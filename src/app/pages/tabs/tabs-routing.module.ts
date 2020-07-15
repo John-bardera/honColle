@@ -13,6 +13,22 @@ const routes: Routes = [
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule),
       },
       {
+        path: 'search',
+        loadChildren: () => import('../search/search.module').then(m => m. SearchPageModule),
+      },
+      {
+        path: 'quiz',
+        loadChildren: () => import('../quiz/quiz.module').then(m => m.QuizPageModule),
+      },
+      {
+        path: 'analytics',
+        loadChildren: () => import('../analytics/analytics.module').then(m => m.AnalyticsPageModule),
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule),
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',
