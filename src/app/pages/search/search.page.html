@@ -1,14 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      search
+      本をさがす
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <div class="content-wrapper">
+    <div class="search-message">
+      <ion-icon name="search" class="search-icon"></ion-icon>
+      作者・著者・ISBN<br>で本を探す
+    </div>
+    <ion-searchbar class="searchbar" mode="ios" enterkeyhint="search" placeholder="アクタージュ" inputmode="search"></ion-searchbar>
+    <ion-buttons class="search-button-wrapper">
+      <ion-button class="search-button">さがす</ion-button>
+    </ion-buttons>
   </div>
 </ion-content>
