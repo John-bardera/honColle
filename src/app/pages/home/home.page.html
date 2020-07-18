@@ -7,5 +7,14 @@
 </ion-header>
 
 <ion-content>
-  <app-list-item [book]="book"></app-list-item>
+  <ng-container *ngIf="books.length; else Empty">
+    <ng-container *ngFor="let book of books">
+      <app-list-item [book]="book"></app-list-item>
+    </ng-container>
+  </ng-container>
+  <ng-template #Empty>
+    <app-empty-state>
+      登録されている本がありません。<br>検索から本を登録してみましょう！
+    </app-empty-state>
+  </ng-template>
 </ion-content>

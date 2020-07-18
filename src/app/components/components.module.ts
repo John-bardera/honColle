@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ListItemComponent } from './list-item/list-item.component';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
 
 @NgModule({
   declarations: [
     ListItemComponent,
+    EmptyStateComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -17,7 +19,8 @@ import { ListItemComponent } from './list-item/list-item.component';
     CommonModule,
   ],
   exports: [
-    ListItemComponent
+    ListItemComponent,
+    EmptyStateComponent,
   ],
 })
 
