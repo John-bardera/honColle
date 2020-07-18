@@ -1,0 +1,39 @@
+.list-item {
+  display: flex;
+  height: 9rem;
+  --padding-start: 0;
+  --inner-padding-start: 8px;
+  --inner-padding-top: 4px;
+  --inner-padding-end: 8px;
+  --inner-padding-bottom: 4px;
+  .thumbnail {
+    height: 100%;
+    flex-basis: 5.2rem;
+  }
+  .text-wrapper {
+    flex-basis: calc(100% - 5.2rem - 12rem);
+    height: 100%;
+    width: 40vw;
+    padding-left: 8px;
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .author {
+      font-size: 1.4rem;
+    }
+  }
+  .buttons {
+    flex-basis: 12rem;
+    display: block;
+    ion-button {
+      letter-spacing: -0.05rem;
+      font-size: 1.2rem;
+      width: 12rem;
+      height: 2.8rem;
+      & + ion-button {
+        margin-top: 4px;
+      }
+    }
+  }
+}

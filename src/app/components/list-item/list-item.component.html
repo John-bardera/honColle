@@ -1,0 +1,17 @@
+<ion-item class="list-item" lines="full">
+  <ion-thumbnail class="thumbnail">
+    <img [src]="book.thumbnail">
+  </ion-thumbnail>
+  <div class="text-wrapper">
+    <div class="title">
+      {{ book.title }}
+    </div>
+    <div class="author">
+      {{ book.authors[0].name }}
+    </div>
+  </div>
+  <ion-buttons class="buttons">
+    <ion-button size="small" fill="solid" shape="round">クイズにチャレンジ</ion-button>
+    <ion-button size="small" fill="solid" shape="round">クイズを作成</ion-button>
+  </ion-buttons>
+</ion-item>

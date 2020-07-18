@@ -16,6 +16,7 @@ import { ApisModule } from './apis/apis.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
 import { ServicesModule } from './services/services.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { ServicesModule } from './services/services.module';
     ApisModule,
     StoreModule.forRoot(reducers),
     ServicesModule,
+    ComponentsModule,
   ],
   providers: [
     StatusBar,
