@@ -6,6 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['quiz.page.scss'],
 })
 export class QuizPage {
-  constructor() { }
+
+  selectedtab: string;
+
+  constructor() {
+    this.selectedtab = 'challenge';
+  }
+
+  onSelectTab(tab: string){
+    this.selectedtab = tab;
+  }
 
 }
+
