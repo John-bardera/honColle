@@ -16,6 +16,8 @@ import { ComponentsModule } from './components/components.module';
 import { ServicesModule } from './services/services.module';
 import { reducers } from './store';
 
+
+
 @NgModule({
   declarations: [AppComponent],
   // Modalとかはここに追加しないといけない
@@ -29,6 +31,7 @@ import { reducers } from './store';
     StoreModule.forRoot(reducers),
     ServicesModule,
     ComponentsModule,
+
   ],
   providers: [
     StatusBar,
