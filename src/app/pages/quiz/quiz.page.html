@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      analytics
+      クイズ
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
@@ -73,7 +73,7 @@
 </ion-content>
 
 
-<ion-content *ngIf="selectedtab == 'challenge'">
+<ion-content *ngIf="selectedtab == 'challenge' && selectedQ == '0'">
   <ion-item>
     <ion-label>
         <p id="quizsearch">クイズを探す</p>
@@ -95,7 +95,7 @@
         </div>
       </ion-label>
       <ion-icon name="chatbubbles" float-right></ion-icon>
-      <ion-button class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
+      <ion-button button (click)="onNext('1')" class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
     </ion-item>
     <ion-item>
       <ion-thumbnail slot="start">
@@ -109,7 +109,7 @@
           <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
         </div>
       </ion-label>
-      <ion-button class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
+      <ion-button button (click)="onNext('1')" class="challengebutton" color="danger" size="default" fill="outline" >挑戦する</ion-button>
     </ion-item>
     <ion-item>
       <ion-thumbnail slot="start">
@@ -123,11 +123,241 @@
           <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon>
         </div>
       </ion-label>
-      <ion-button class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
+      <ion-button button (click)="onNext('1')" class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
     </ion-item>
    </ion-list>
 </ion-content>
 
-<ion-content *ngIf="selectedtab == 'make'">
-  make
+<ion-content padding *ngIf="selectedtab == 'challenge' && selectedQ == '1'">
+  <h3>アクタージュクイズ</h3>
+  <p>本：アクタージュ　著：マツキタクヤ</p>
+  <p>作成者：apple</p>
+  <h4>全2問</h4>
+
+  <h2>1.本作の主人公である夜凪景が身に着けていた演技法は？</h2>
+  <ion-button class="block" color="light">メソッド演技法</ion-button>
+  <ion-button class="block" color="light">パクパク演技法</ion-button>
+  <ion-button class="block" color="light">もぐもぐ演技法</ion-button>
+
+  <ion-button class="bottom-right" fill="clear" button (click)="onNext('2')">次の問題へ→</ion-button>
+</ion-content>
+
+<ion-content padding *ngIf="selectedtab == 'challenge' && selectedQ == '2'">
+  <h3>アクタージュクイズ</h3>
+  <p>本：アクタージュ　著：マツキタクヤ</p>
+  <p>作成者：apple</p>
+  <h4>全2問</h4>
+
+  <h2>2.〇△□×？</h2>
+  <ion-button class="block" color="light">メソッド演技法</ion-button>
+  <ion-button class="block" color="light">パクパク演技法</ion-button>
+  <ion-button class="block" color="light">もぐもぐ演技法</ion-button>
+
+  <ion-button class="bottom-right" fill="clear" button (click)="onNext('anser')">結果を見る→</ion-button>
+</ion-content>
+
+<ion-content padding *ngIf="selectedtab == 'challenge' && selectedQ == 'anser'">
+  <h3>アクタージュクイズ</h3>
+  <p>本：アクタージュ　著：マツキタクヤ</p>
+  <p>作成者：apple</p>
+  <h4>全2問</h4>
+
+  <h2 id = "anser">正答</h2>
+  <div class = "anser">
+    <h3>1.本作の主人公である夜凪景が身に着けていた演技法は？</h3>
+    <p>あなたの答え：メソッド演技法</p>
+    <p class="correct">正解：メソッド演技法</p>
+
+    <h3>2.〇△□×？</h3>
+    <p>あなたの答え：〇</p>
+    <p class="wrong">正解：△</p>
+  </div>
+
+  <ion-button class="bottom-right" fill="clear" button (click)="onNext('review')">レビュー→</ion-button>
+</ion-content>
+
+<ion-content *ngIf="selectedtab == 'challenge' && selectedQ == 'review'">
+  <ion-item>
+    <ion-label>
+      <h3>アクタージュクイズ</h3>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="../../../../resources/act.jpg">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>アクタージュ1巻</h2>
+      <div class="quizmaker">
+        <p>著　マツキタクヤ</p>
+        <p class="ion-text-lowercase">クイズ作成者　apple　さん</p>
+      </div>
+    </ion-label>
+  </ion-item>
+
+  <h1 class="ion-text-uppercase" id="seitousu"><b>1問正解！</b></h1>
+  <div class="box">
+    <p class="box-item">このクイズの評価をお願いします</p>
+    <div class="box-item">
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+
+      <p>コメント</p>
+      <textarea placeholder="ここに記入してください" rows="10" cols="50"></textarea>
+      <br>
+      <ion-button button (click)="onNext('list')" fill="outline" size="default" mode="ios">レビューする</ion-button>
+      <br>
+      <ion-button button (click)="onNext('list')" color="medium" fill="outline" size="small" mode="ios">レビューせずに閉じる</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="selectedtab == 'challenge' && selectedQ == 'list'">
+  <ion-item>
+    <ion-label>
+      <div id="quizdetail">
+        <p class="ion-text-uppercase" id="title">アクタージュクイズ</p>
+        <p>本：アクタージュ　著：マツキタクヤ</p>
+        <p>作成者：apple</p>
+        <p>全３問</p>
+      </div>
+      <ion-icon name="chatbox"></ion-icon>
+      <p style="text-align: center;">このクイズのコメント</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-list>
+        あんこ
+        <div class="right">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        </div>
+        <p>全部同じ問題やん</p>
+    </ion-list>
+  </ion-item>
+  <ion-item>
+    <ion-list>
+        おもち
+        <div class="right">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        </div>
+        <p>もう少し難易度の高い問題が解きたい</p>
+    </ion-list>
+  </ion-item>
+</ion-content>
+
+<ion-content *ngIf="selectedtab == 'make' && selectedmake == '0'">
+  <ion-item>
+    <ion-label>
+        <p id="quizsearch">作成するクイズの作品・シリーズ・著者を選ぶ</p>
+        <ion-searchbar class="searchbar" color="favorite" mode="ios" enterkeyhint="search" placeholder="検索" inputmode="search"></ion-searchbar>
+        <p>検索結果</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="../../../../resources/act.jpg">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>アクタージュ1巻</h2>
+      <div class="quizmaker">
+        <p>著　マツキタクヤ</p>
+      </div>
+    </ion-label>
+    <ion-button button (click) ="onMake('1')" class="challengebutton" color="danger" size="default" fill="outline">+作成する</ion-button>
+  </ion-item>
+</ion-content>
+
+<ion-content *ngIf="selectedtab == 'make' && selectedmake == '1'">
+  <ion-list>
+  <ion-item>
+    <p>対象作品</p>
+  </ion-item>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="../../../../resources/act.jpg">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>アクタージュ1巻</h2>
+      <div class="quizmaker">
+        <p>著　マツキタクヤ</p>
+      </div>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      <p>クイズタイトル</p>
+      <input type="text" name="quiztitle" size="30" maxlength="25">
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-button button (click)="onMake('2')" fill="clear"><ion-icon slot="icon-only" name="add-circle-outline"></ion-icon></ion-button>
+    <p>問題を追加</p>
+  </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-content padding *ngIf="selectedtab == 'make' && selectedmake == '2'">
+  <div class="box">
+    <p>問題分</p>
+    <textarea rows="10" cols="50"></textarea>
+    <br>
+    <p>選択肢</p>
+    <div padding>
+      <p>正解</p>
+      <input type="text" name="quiztitle" size="50" maxlength="45">
+      <p id="">不正解</p>
+      <input type="text" name="quiztitle" size="50" maxlength="45">
+      <br>
+      <input class="margin-top" type="text" name="quiztitle" size="50" maxlength="45">
+    </div>
+  </div>
+  <div class="center">
+    <ion-button button (click)="onMake('3')" name="addbutton" size="default" fill="outline" mode="ios">追加する</ion-button>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="selectedtab == 'make' && selectedmake == '3'">
+  <ion-list>
+    <ion-item>
+      <p>対象作品</p>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src="../../../../resources/act.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>アクタージュ1巻</h2>
+        <div class="quizmaker">
+          <p>著　マツキタクヤ</p>
+        </div>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>クイズタイトル</p>
+        <input type="text" name="quiztitle" size="30" maxlength="25">
+      </ion-label>
+    </ion-item>
+    <ion-item><p>問題</p></ion-item>
+    <ion-item>
+      <ion-label>
+        <p>1.ほにゃほにゃ？</p>
+        <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <div class="center">
+    <ion-button size="default" fill="outline" mode="ios">公開する</ion-button>
+  </div>
 </ion-content>
