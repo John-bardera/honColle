@@ -4,7 +4,7 @@ import { normalizeKeys } from 'object-keys-normalizer';
 import snakeCase from 'lodash.snakecase';
 
 import { environment } from '@environment';
-import { EnvironmentInterface } from '../environments/environment.type';
+import { EnvironmentInterface } from '@environment';
 
 // import { AuthService } from '../service'
 

@@ -12,9 +12,9 @@
       <ion-icon name="search" class="search-icon"></ion-icon>
       作者・著者・ISBN<br>で本を探す
     </div>
-    <ion-searchbar class="searchbar" mode="ios" enterkeyhint="search" placeholder="アクタージュ" inputmode="search"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="q" class="searchbar" mode="ios" enterkeyhint="search" placeholder="アクタージュ" inputmode="search"></ion-searchbar>
     <ion-buttons class="search-button-wrapper">
-      <ion-button class="search-button">さがす</ion-button>
+      <ion-button class="search-button" (click)="search()">さがす</ion-button>
     </ion-buttons>
   </div>
 </ion-content>

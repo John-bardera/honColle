@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {BookService} from '../../services';
 
 @Component({
   selector: 'app-search',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['search.page.scss'],
 })
 export class SearchPage {
-  constructor() { }
+  q = '';
 
+  constructor(
+    private bookService: BookService,
+  ) { }
+  search() {
+    this.bookService.searchFromGlobal(this.q);
+  }
 }
