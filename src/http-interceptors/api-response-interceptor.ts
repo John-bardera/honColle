@@ -1,8 +1,8 @@
-import {HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {map} from 'rxjs/operators';
+import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
-import {normalizeKeys} from 'object-keys-normalizer';
+import { normalizeKeys } from 'object-keys-normalizer';
 
 import { environment } from '@environment';
 

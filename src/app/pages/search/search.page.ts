@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Book } from '@/models';
-import {BookService} from '@/services';
+import { BookService } from '@/services';
 
 @Component({
   selector: 'app-search',

@@ -1,11 +1,11 @@
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { BookApiResponse, ParsedBookApiResponse } from '@/models';
 
-import {affiliateId, applicationId} from '../config';
+import { affiliateId, applicationId } from '../config';
 
 @Injectable()
 export class BookService {
