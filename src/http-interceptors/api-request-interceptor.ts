@@ -1,7 +1,8 @@
+import { HttpHandler, HttpHeaders, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpHeaders, HttpParams } from '@angular/common/http';
-import { normalizeKeys } from 'object-keys-normalizer';
+
 import snakeCase from 'lodash.snakecase';
+import { normalizeKeys } from 'object-keys-normalizer';
 
 import { environment } from '@environment';
 import { EnvironmentInterface } from '@environment';

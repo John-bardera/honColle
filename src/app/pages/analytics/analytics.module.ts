@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
-import { AnalyticsPage } from './analytics.page';
 import { AnalyticsDetailPage } from './analytics-detail/analytics-detail.page';
+import { AnalyticsPage } from './analytics.page';
 
 @NgModule({
   imports: [

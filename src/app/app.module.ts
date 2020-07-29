@@ -1,22 +1,20 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { StoreModule } from '@ngrx/store';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-
-import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from '../http-interceptors';
-
 import { ApisModule } from './apis/apis.module';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './store';
-import { ServicesModule } from './services/services.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
+import { ServicesModule } from './services/services.module';
+import { reducers } from './store';
 
 @NgModule({
   declarations: [AppComponent],
