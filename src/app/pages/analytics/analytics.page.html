@@ -1,14 +1,36 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      analytics
+      レポート
     </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button button (click)="onSelectTab('author')">
+        <b>著者</b>
+      </ion-segment-button>
+      <ion-segment-button button (click)="onSelectTab('series')">
+        <b>シリーズ</b>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content [class.hidden]="selected !== 'author'">
+  <ion-list>
+    <ion-item [button]="true">
+      <ion-label>マツキタクヤ</ion-label>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-label>有川浩</ion-label>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-label>伊坂幸太郎</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-content [class.hidden]="selected !== 'series'">
+  <h3>メイドインアビス</h3>
+  <canvas #MyChart width="400" height="400"></canvas>
 </ion-content>
