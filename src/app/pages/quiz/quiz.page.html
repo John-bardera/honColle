@@ -77,17 +77,21 @@
   <ion-item>
     <ion-label>
         <p id="quizsearch">クイズを探す</p>
-        <ion-searchbar class="searchbar" color="favorite" mode="ios" enterkeyhint="search" placeholder="検索" inputmode="search"></ion-searchbar>
+        <ion-searchbar 
+          showCancelButton="never"
+          placeholder="入力してください"
+          (ionInput)="getItems($event)">
+        </ion-searchbar>
         <p>検索結果</p>
     </ion-label>
   </ion-item>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let item of itemList">
       <ion-thumbnail slot="start">
         <img src="../../../../resources/act.jpg">
       </ion-thumbnail>
       <ion-label>
-        <h2>アクタージュのクイズ</h2>
+        <h2>{{item}}</h2>
         <div class="quizmaker">
           <p>著　マツキタクヤ</p>
           <p class="ion-text-lowercase">apple　さん</p>
@@ -95,34 +99,6 @@
         </div>
       </ion-label>
       <ion-icon name="chatbubbles" float-right></ion-icon>
-      <ion-button button (click)="onNext('1')" class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <img src="../../../../resources/act.jpg">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>永遠の0のクイズ</h2>
-        <div class="quizmaker">
-          <p>著　百田尚樹</p>
-          <p class="ion-text-lowercase">あいうえお　さん</p>
-          <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
-        </div>
-      </ion-label>
-      <ion-button button (click)="onNext('1')" class="challengebutton" color="danger" size="default" fill="outline" >挑戦する</ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <img src="../../../../resources/act.jpg">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>メイドインアビスのクイズ</h2>
-        <div class="quizmaker">
-          <p>著　つくしあきひと</p>
-          <p class="ion-text-lowercase">さとし　さん</p>
-          <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon>
-        </div>
-      </ion-label>
       <ion-button button (click)="onNext('1')" class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
     </ion-item>
    </ion-list>
