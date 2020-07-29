@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AnalyticsPage } from './analytics.page';
+import { AnalyticsDetailPage } from './analytics-detail/analytics-detail.page';
 
 @NgModule({
   imports: [
@@ -14,7 +15,16 @@ import { AnalyticsPage } from './analytics.page';
     RouterModule.forChild([
       {
         path: '',
-        component: AnalyticsPage
+        children: [
+          {
+            path: '',
+            component: AnalyticsPage
+          },
+          {
+            path: ':id',
+            loadChildren: () => import('./analytics-detail/analytics-detail.module').then(m => m.AnalyticsDetailPageModule)
+          }
+        ]
       }
     ])
   ],

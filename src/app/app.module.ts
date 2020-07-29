@@ -17,9 +17,6 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
 import { ServicesModule } from './services/services.module';
 
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 @NgModule({
   declarations: [AppComponent],
   // Modalとかはここに追加しないといけない
@@ -32,7 +29,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ApisModule,
     StoreModule.forRoot(reducers),
     ServicesModule,
-    NgxChartsModule,
   ],
   providers: [
     StatusBar,

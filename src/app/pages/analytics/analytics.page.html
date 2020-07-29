@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      analytics
+      レポート
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
@@ -16,39 +16,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="selectedtab == 'author'">
+<ion-content [class.hidden]="selected !== 'author'">
   <ion-list>
-    <ion-item button (click)="onSelectList(true)">
+    <ion-item [button]="true">
       <ion-label>マツキタクヤ</ion-label>
     </ion-item>
-    <ion-item button="true">
+    <ion-item [button]="true">
       <ion-label>有川浩</ion-label>
     </ion-item>
-    <ion-item button="true">
+    <ion-item [button]="true">
       <ion-label>伊坂幸太郎</ion-label>
     </ion-item>
   </ion-list>
-  <div class="report" *ngIf="selected">
-    <h4>マツキタクヤ</h4>
-    <h3 id="syoji">所持</h3>
-    <p>読書済み　　13%</p>
-    <p>積読　　　　48%</p>
-    <h3 id="misyoji">未所持</h3>
-    <p>未所持　　　39%</p>
-  </div>
 </ion-content>
 
-<ion-content *ngIf="selectedtab == 'series'">
+<ion-content [class.hidden]="selected !== 'series'">
   <h3>メイドインアビス</h3>
+  <canvas #MyChart width="400" height="400"></canvas>
 </ion-content>
-
-<ngx-charts-pie-chart
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="sampleData"
-  [legend]="showLegend"
-  [explodeSlices]="explodeSlices"
-  [labels]="showLabels"
-  [doughnut]="doughnut"
-  [gradient]="gradient">
-</ngx-charts-pie-chart>
