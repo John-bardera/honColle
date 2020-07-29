@@ -1,4 +1,4 @@
-import { EnvironmentInterface } from './environment.type';
+import { EnvironmentInterface } from '@environment';
 
 export const environment: EnvironmentInterface = {
   name: 'dev',

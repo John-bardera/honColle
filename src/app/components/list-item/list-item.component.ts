@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-import { Book, Author } from '../../models';
+import { Book } from '@/models';
 
 @Component({
   selector: 'app-list-item',

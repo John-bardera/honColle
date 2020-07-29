@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { applicationId } from '../config';
+import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { BookApiResponse, ParsedBookApiResponse } from '@/models';
+
+import {affiliateId, applicationId} from '../config';
+
+@Injectable()
 export class BookService {
   url = 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404';
 
@@ -12,14 +15,29 @@ export class BookService {
     private http: HttpClient,
   ) { }
 
-  searchFromGlobal(q: string) {
-    const body = {
+  parseQueryOfSearchFromGlobalAndSearch(q: string) {
+    this.searchFromGlobal(q);
+  }
+  searchFromGlobal(q: string): Observable<ParsedBookApiResponse> {
+    const params = {
       format: 'json',
       applicationId,
-      title: 'アクタージュ'
+      affiliateId,
+      title: 'アクタージュ',
+      // author: 'アクタージュ',
+      outOfStockFlag: '1',
     };
-    this.http.post(this.url, { body }).subscribe(_ => {
-      console.log(_);
-    });
+    return this.http.get<BookApiResponse>(this.url, {params})
+      .pipe(
+        map((res: BookApiResponse) => {
+          return {
+            books: res.Items.filter(item => item.Item.size).map(item => item.Item),
+            count: res.count,
+            hits: res.hits,
+            page: res.page,
+            pageCount: res.pageCount,
+          };
+        })
+      );
   }
 }
