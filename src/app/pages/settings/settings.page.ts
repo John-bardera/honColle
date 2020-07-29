@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['settings.page.scss'],
 })
 export class SettingsPage {
+  hoge=false;
   constructor() { }
 
 }
