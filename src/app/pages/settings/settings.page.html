@@ -6,67 +6,29 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- List of Text Items 
-<ion-list>
-  <ion-item>
-    <ion-label>おすすめの本表示</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label>しばらく読んでいない本の通知</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label>しばらくアプリを起動していない通知</ion-label>
-  </ion-item>
-  </ion-list>
--->
 <ion-content>
 <!-- List of Input Items -->
 <ion-list>
-<div class = "contents">
+<div class="contents">
   <h1>　コンテンツ設定</h1>
-  <ion-item class = "recomend">
-    <ion-label><p>おすすめの本表示</p></ion-label>
-    <ion-label class = "On" *ngIf="recbook">ON</ion-label>
-    <ion-label class = "Off" *ngIf="!recbook">OFF</ion-label>
-    <ion-toggle slot="end" [(ngModel)]="recbook"></ion-toggle>
+  <ion-item class="recomend">
+    <ion-label>おすすめの本表示</ion-label>
+    <ion-label class="onOff">{{ recBook ? 'ON' : 'OFF' }}</ion-label>
+    <ion-toggle slot="end" [(ngModel)]="recBook"></ion-toggle>
   </ion-item>
 </div>
-<div class = "remind">
+<div class="remind">
   <h1>　通知設定</h1>
-  <ion-item class = "notread">
-    <ion-label><p>しばらく読んでいない本の通知</p></ion-label>
-    <ion-label class = "On" *ngIf="nread">ON</ion-label>
-    <ion-label class = "Off" *ngIf="!nread">OFF</ion-label>
-    <ion-toggle slot="end" [(ngModel)]="nread"></ion-toggle>
+  <ion-item class="notread">
+    <ion-label>しばらく読んでいない本の通知</ion-label>
+    <ion-label class="onOff">{{ nRead ? 'ON' : 'OFF' }}</ion-label>
+    <ion-toggle slot="end" [(ngModel)]="nRead"></ion-toggle>
   </ion-item>
-  <ion-item class = "close">
-    <ion-label><p>しばらくアプリを起動していない通知</p></ion-label>
-    <ion-label class = "On" *ngIf="start">ON</ion-label>
-    <ion-label class = "Off" *ngIf="!start">OFF</ion-label>
+  <ion-item class="close">
+    <ion-label>しばらくアプリを起動していない通知</ion-label>
+    <ion-label class="onOff">{{ start ? 'ON' : 'OFF' }}</ion-label>
     <ion-toggle slot="end" [(ngModel)]="start"></ion-toggle>
   </ion-item>
 </div>
 </ion-list>
 </ion-content>
-
-<!-- List of Sliding Items 
-<ion-list>
-  <ion-item-sliding>
-    <ion-item>
-      <ion-label>Item</ion-label>
-    </ion-item>
-    <ion-item-options side="end">
-      <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
-
-  <ion-item-sliding>
-    <ion-item>
-      <ion-label>Item</ion-label>
-    </ion-item>
-    <ion-item-options side="end">
-      <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
--->

@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['settings.page.scss'],
 })
 export class SettingsPage {
-  hoge=false;
+  recBook = false;
+  nRead = false;
+  start = false;
   constructor() { }
 
 }
