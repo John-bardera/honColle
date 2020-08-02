@@ -14,7 +14,16 @@ import { SearchPage } from './search.page';
     RouterModule.forChild([
       {
         path: '',
-        component: SearchPage
+        children: [
+          {
+            path: '',
+            component: SearchPage
+          },
+          {
+            path: 'result',
+            loadChildren: () => import('./search-result/search-result.module').then(m => m.SearchResultPageModule)
+          }
+        ]
       }
     ])
   ],
