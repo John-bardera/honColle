@@ -30,13 +30,13 @@ ion-title{
     margin-left: 10px;
 }
 
-ion-icon[name="star"]{
+/*ion-icon[name="star"]{
     color: #ffd700;
 }
 
 ion-icon[name="star-outline"]{
     color: #ffd700;
-}
+}*/
 
 #quizsearch{
     margin-left: 10px;
@@ -88,6 +88,29 @@ ion-icon[name="star-outline"]{
 .box-item{
     text-align: center;
 }
+
+.evaluation{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+.evaluation input[type='radio']{
+    display: none;
+}
+.evaluation label{
+    position: relative;
+    padding: 10px 10px 0;
+    color: gray;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.evaluation label:hover,
+.evaluation label:hover ~ label,
+.evaluation input[type='radio']:checked ~ label{
+    color: #ffcc00;
+}
+
 
 #quizdetail{
     padding-left: 10px;

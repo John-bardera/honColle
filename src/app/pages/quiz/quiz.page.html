@@ -175,12 +175,19 @@
   <div class="box">
     <p class="box-item">このクイズの評価をお願いします</p>
     <div class="box-item">
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-
+      <div class="evaluation">
+        <input id="star1" type="radio" name="star" value="5" />
+        <label for="star1"><ion-icon name="star"></ion-icon></label>
+        <input id="star2" type="radio" name="star" value="4" />
+        <label for="star2"><ion-icon name="star"></ion-icon></label>
+        <input id="star3" type="radio" name="star" value="3" />
+        <label for="star3"><ion-icon name="star"></ion-icon></label>
+        <input id="star4" type="radio" name="star" value="2" />
+        <label for="star4"><ion-icon name="star"></ion-icon></label>
+        <input id="star5" type="radio" name="star" value="1" />
+        <label for="star5"><ion-icon name="star"></ion-icon></label>
+        <!-- <ion-button *ngFor="let star in Array(5).keys()" (click)="hoge(star)"></ion-button> -->
+      </div>
       <p>コメント</p>
       <textarea placeholder="ここに記入してください" rows="10" cols="50"></textarea>
       <br>
