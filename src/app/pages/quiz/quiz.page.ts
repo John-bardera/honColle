@@ -1,42 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import {Quiz} from '../../quiz';
+//import {QUIZZES} from '../../mock-quizzes';
+import {QuizService} from '../../quiz.service';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: 'quiz.page.html',
   styleUrls: ['quiz.page.scss'],
 })
-export class QuizPage {
+export class QuizPage implements OnInit{
 
-  itemList=[];
+  allquizzes: Quiz[];
+  quizzes:  Quiz[];
+
+  selectednum: number; //選択された番号
+  correctnum: number; //正解数
+  //クイズ作成
+  quiz: Quiz = {
+    title: '',
+    maker: '',
+    Q: '',
+    choices: [],
+    correct: 1
+  };
 
   selectedtab: string;
   selectedQ: string;
   selectedmake: string;
 
-  constructor() {
-    this.selectedtab = 'challenge';
+  constructor(private quizService: QuizService) {
+    this.selectedtab = 'make';
     this.selectedQ = '0';
     this.selectedmake = '0';
+    this.correctnum = 0;
   }
 
-  ionViewWillEnter(){
-    this.itemList = [
-      'アクタージュのクイズ','メイドインアビスのクイズ','ごとうぶんの花嫁クイズ',
-      'ご注文はうさぎですか？クイズ'
-    ];
+  ngOnInit(){
+    this.getQuizzes();
+  }
+
+  getQuizzes():void{
+    this.allquizzes = this.quizService.getQuizzes();
+    this.quizzes = this.quizService.getQuizzes();
+  }
+
+  //クイズ追加
+  quizPush(quiz: Quiz){
+    this.quizzes.push(quiz);
+  }
+
+  //選択肢番号返す
+  selectbutton(num: number){
+    this.selectednum = num;
+  }
+
+  //選択肢と答え合致数
+  matchChoices(){
+    if(this.selectednum == this.quiz.correct){
+      this.correctnum += 1;
+    }
+    return this.correctnum;
   }
 
   async getItems(ev: any){
     let value = ev.target.value; //イベントを発生させたオブジェクトのvalueつまり入力した文字
     if(value === ''){
-      this.itemList = [
-        'アクタージュのクイズ','メイドインアビスのクイズ','ごとうぶんの花嫁クイズ',
-        'ご注文はうさぎですか？クイズ'
-      ];
+      this.allquizzes;
     }
     // if the value is an empty string don't filter the items
     if(value !== ''){
-      this.itemList = this.itemList.filter((item) => {
+      this.quizzes = this.allquizzes.filter((quiz) => {
         //前方一致
         /*if(value.match(/^[A-Za-z0-9]*$/)){
           return (item.toString().toLowerCase().indexOf(value.toLowerCase()) === 0);
@@ -44,11 +78,7 @@ export class QuizPage {
           return (item.toString().toLowerCase().indexOf(value.toLowerCase()) === 0);
         }*/
         //部分一致
-        if (value.match(/^[A-Za-z0-9]*$/)) {
-          return (item.toLowerCase().indexOf(value));
-        } else {
-          return (item.toLowerCase().indexOf(value));
-        }
+          return (quiz.title.toLowerCase().includes(value));
       });
     }
   }
