@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-quiz',
@@ -12,6 +13,7 @@ export class QuizPage {
   selectedtab: string;
   selectedQ: string;
   selectedmake: string;
+  checked = 0;
 
   constructor() {
     this.selectedtab = 'challenge';
@@ -53,6 +55,36 @@ export class QuizPage {
     }
   }
 
+  /*clickStar(name){
+    var stars = document.getElementsByName(name);
+    var result;
+    for(var i = 0; i < stars.length; i++){
+      if(stars[i].checked){
+        result = stars[i].Value;
+        break;
+      }
+    }
+    console.log(result);
+  }*/
+/* ラジオボタンの値を取得したいができない上も下も */ 
+  /*let clickStar;
+
+  clickStar(){
+    if(document.starForm.star.checked){
+      clickStar = document.starForm.star.value;
+    }
+  }*/
+
+  /*clickStar(){
+    const starvalue = document.forms.radio.star.value;
+    console.log(starvalue);
+  }*/
+
+  hoge(star: number){
+    console.log(star);
+    this.checked = star;
+  }
+
   onSelectTab(tab: string){
     this.selectedtab = tab;
   }
@@ -65,4 +97,5 @@ export class QuizPage {
     this.selectedmake = make;
   }
 }
+
 

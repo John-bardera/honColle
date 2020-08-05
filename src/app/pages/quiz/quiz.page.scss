@@ -107,7 +107,7 @@ ion-icon[name="star-outline"]{
 
 .evaluation label:hover,
 .evaluation label:hover ~ label,
-.evaluation input[type='radio']:checked ~ label{
+.evaluation .checked {
     color: #ffcc00;
 }
 

@@ -176,22 +176,12 @@
     <p class="box-item">このクイズの評価をお願いします</p>
     <div class="box-item">
       <div class="evaluation">
-        <input id="star1" type="radio" name="star" value="5" />
-        <label for="star1"><ion-icon name="star"></ion-icon></label>
-        <input id="star2" type="radio" name="star" value="4" />
-        <label for="star2"><ion-icon name="star"></ion-icon></label>
-        <input id="star3" type="radio" name="star" value="3" />
-        <label for="star3"><ion-icon name="star"></ion-icon></label>
-        <input id="star4" type="radio" name="star" value="2" />
-        <label for="star4"><ion-icon name="star"></ion-icon></label>
-        <input id="star5" type="radio" name="star" value="1" />
-        <label for="star5"><ion-icon name="star"></ion-icon></label>
-        <!-- <ion-button *ngFor="let star in Array(5).keys()" (click)="hoge(star)"></ion-button> -->
+        <label *ngFor="let star of [5,4,3,2,1]" [class.checked]="checked >= star" (click)="hoge(star)"><ion-icon name="star"></ion-icon></label>
       </div>
       <p>コメント</p>
       <textarea placeholder="ここに記入してください" rows="10" cols="50"></textarea>
       <br>
-      <ion-button button (click)="onNext('list')" fill="outline" size="default" mode="ios">レビューする</ion-button>
+      <ion-button button (click)="onNext('list')" fill="outline" size="default" mode="ios" name="revew">レビューする</ion-button>
       <br>
       <ion-button button (click)="onNext('list')" color="medium" fill="outline" size="small" mode="ios">レビューせずに閉じる</ion-button>
     </div>
