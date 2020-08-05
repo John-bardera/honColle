@@ -182,9 +182,11 @@
       <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
 
       <p>コメント</p>
-      <textarea placeholder="ここに記入してください" rows="10" cols="50"></textarea>
+      <input [(ngModel)]="comment.maker" type="text" placeholder="名前" size="20" maxlength="15">
       <br>
-      <ion-button button (click)="onNext('list')" fill="outline" size="default" mode="ios">レビューする</ion-button>
+      <textarea [(ngModel)]="comment.content" placeholder="コメント" rows="10" cols="50"></textarea>
+      <br>
+      <ion-button button (click)="addComment(comment)" fill="outline" size="default" mode="ios">レビューする</ion-button>
       <br>
       <ion-button button (click)="onNext('list')" color="medium" fill="outline" size="small" mode="ios">レビューせずに閉じる</ion-button>
     </div>
@@ -204,30 +206,17 @@
       <p style="text-align: center;">このクイズのコメント</p>
     </ion-label>
   </ion-item>
-  <ion-item>
+  <ion-item *ngFor="let comment of comments">
     <ion-list>
-        あんこ
+        {{comment.maker}}
         <div class="right">
-        <ion-icon name="star"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
         </div>
-        <p>全部同じ問題やん</p>
-    </ion-list>
-  </ion-item>
-  <ion-item>
-    <ion-list>
-        おもち
-        <div class="right">
-        <ion-icon name="star"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        </div>
-        <p>もう少し難易度の高い問題が解きたい</p>
+        <p>{{comment.content}}</p>
     </ion-list>
   </ion-item>
 </ion-content>
@@ -303,7 +292,7 @@
     </div>
   </div>
   <div class="center">
-    <ion-button button (click)="quizPush(quiz)" name="addbutton" size="default" fill="outline" mode="ios">追加する</ion-button>
+    <ion-button button (click)="addQuiz(quiz)" name="addbutton" size="default" fill="outline" mode="ios">追加する</ion-button>
   </div>
   <ion-button button (click)="onMake('3')" class="bottom-right" fill="clear">次の問題へ→</ion-button>
 </ion-content>

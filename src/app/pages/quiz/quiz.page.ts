@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Quiz} from '../../quiz';
-//import {QUIZZES} from '../../mock-quizzes';
 import {QuizService} from '../../quiz.service';
+
+import {Comment} from '../../comment';
+import {CommentService} from '../../comment.service';
+
 
 @Component({
   selector: 'app-quiz',
@@ -14,6 +17,8 @@ export class QuizPage implements OnInit{
   allquizzes: Quiz[];
   quizzes:  Quiz[];
 
+  comments: Comment[];
+
   selectednum: number; //選択された番号
   correctnum: number; //正解数
   //クイズ作成
@@ -22,14 +27,21 @@ export class QuizPage implements OnInit{
     maker: '',
     Q: '',
     choices: [],
-    correct: 1
+    correct: 1,
+  };
+
+  //コメント作成
+  comment: Comment = {
+    maker: '',
+    content: '',
+    star: 0,
   };
 
   selectedtab: string;
   selectedQ: string;
   selectedmake: string;
 
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService, private commentService: CommentService) {
     this.selectedtab = 'make';
     this.selectedQ = '0';
     this.selectedmake = '0';
@@ -38,6 +50,7 @@ export class QuizPage implements OnInit{
 
   ngOnInit(){
     this.getQuizzes();
+    this.getComments();
   }
 
   getQuizzes():void{
@@ -45,8 +58,12 @@ export class QuizPage implements OnInit{
     this.quizzes = this.quizService.getQuizzes();
   }
 
+  getComments():void{
+    this.comments = this.commentService.getComments();
+  }
+
   //クイズ追加
-  quizPush(quiz: Quiz){
+  addQuiz(quiz: Quiz){
     this.quizzes.push(quiz);
   }
 
@@ -61,6 +78,13 @@ export class QuizPage implements OnInit{
       this.correctnum += 1;
     }
     return this.correctnum;
+  }
+
+  //コメント追加
+  addComment(comment: Comment){
+    if(comment.content != ''){
+      this.comments.push(comment);
+    }
   }
 
   async getItems(ev: any){
