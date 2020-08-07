@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Book, BookApiResponse, ParsedBookApiResponse } from '@/models';
 
-import { affiliateId, applicationId } from '../config';
+import { affiliateId, applicationId, searchBoundaryValue } from '../config';
 
 @Injectable()
 export class BookService {
@@ -16,7 +16,12 @@ export class BookService {
   ) { }
 
   parseQueryOfSearchFromGlobalAndSearch(q: string): Observable<Array<Book>> {
-    return this.searchFromGlobal(q).pipe(map(res => res.books.sort((a, b) => a.title > b.title ? 1 : -1)));
+    return this.searchFromGlobal(q).pipe(map(res => {
+      if (res.count > searchBoundaryValue) {
+        throwError('Hits over search Boundary Value.');
+      }
+      return res.books.sort((a, b) => a.title > b.title ? 1 : -1);
+    }));
   }
   searchFromGlobal(q: string): Observable<ParsedBookApiResponse> {
     const params = {
@@ -25,9 +30,10 @@ export class BookService {
       affiliateId,
       title: q,
       // author: 'アクタージュ',
+      hits: '100',
       outOfStockFlag: '1',
     };
-    return this.http.get<BookApiResponse>(this.url, {params})
+    return this.http.get<BookApiResponse>(this.url, { params })
       .pipe(
         map((res: BookApiResponse) => {
           return {
