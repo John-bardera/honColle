@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>search-result</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/search"></ion-back-button>
+    </ion-buttons>
+    <ion-title>検索結果</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ng-container *ngIf="books$ | async as books">
+    <ng-container *ngIf="books.length; else Empty">
+      <app-list-item
+        *ngFor="let book of books"
+        [book]="book"
+      ></app-list-item>
+    </ng-container>
+    <ng-template #Empty>
+      <app-empty-state>見つかりませんでした</app-empty-state>
+    </ng-template>
+  </ng-container>
 </ion-content>

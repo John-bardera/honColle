@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BookApiResponse, ParsedBookApiResponse } from '@/models';
+import { Book, BookApiResponse, ParsedBookApiResponse } from '@/models';
 
 import { affiliateId, applicationId } from '../config';
 
@@ -15,8 +15,8 @@ export class BookService {
     private http: HttpClient,
   ) { }
 
-  parseQueryOfSearchFromGlobalAndSearch(q: string) {
-    this.searchFromGlobal(q);
+  parseQueryOfSearchFromGlobalAndSearch(q: string): Observable<Array<Book>> {
+    return this.searchFromGlobal(q).pipe(map(res => res.books));
   }
   searchFromGlobal(q: string): Observable<ParsedBookApiResponse> {
     const params = {
