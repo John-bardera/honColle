@@ -16,7 +16,7 @@ export class BookService {
   ) { }
 
   parseQueryOfSearchFromGlobalAndSearch(q: string): Observable<Array<Book>> {
-    return this.searchFromGlobal(q).pipe(map(res => res.books));
+    return this.searchFromGlobal(q).pipe(map(res => res.books.sort((a, b) => a.title > b.title ? 1 : -1)));
   }
   searchFromGlobal(q: string): Observable<ParsedBookApiResponse> {
     const params = {
@@ -31,7 +31,13 @@ export class BookService {
       .pipe(
         map((res: BookApiResponse) => {
           return {
-            books: res.Items.filter(item => item.Item.size).map(item => item.Item),
+            books: res.Items
+              .filter(item => item.Item.size)
+              .map(item => item.Item)
+              .map((book: Book) => {
+                book.id = book.isbn;
+                return book;
+              }),
             count: res.count,
             hits: res.hits,
             page: res.page,

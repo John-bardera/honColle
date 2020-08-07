@@ -29,14 +29,17 @@ export class SearchResultPage implements OnInit {
       message: `「${book.title}」を本棚に追加します`,
       buttons: [
         {
-          text: 'OK',
+          text: '未読として登録',
           handler: async () => {
-            const toast = await this.toastCtrl.create({
-              message: `「${book.title}」を本棚に追加しました`,
-              duration: 3000,
-            });
-            await this.store.dispatch(setBook({ book }));
-            await toast.present();
+            book.isRead = false;
+            await this.addBookHandler(book);
+          }
+        },
+        {
+          text: '既読として登録',
+          handler: async () => {
+            book.isRead = true;
+            await this.addBookHandler(book);
           }
         },
         {
@@ -46,5 +49,13 @@ export class SearchResultPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+  async addBookHandler(book: Book) {
+    const toast = await this.toastCtrl.create({
+      message: `「${book.title}」を本棚に追加しました`,
+      duration: 3000,
+    });
+    await this.store.dispatch(setBook({ book }));
+    await toast.present();
   }
 }

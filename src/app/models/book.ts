@@ -29,4 +29,6 @@ export interface Book {
   smallImageUrl: string;
   title: string;
   titleKana: string;
+  id: string;
+  isRead: boolean;
 }
