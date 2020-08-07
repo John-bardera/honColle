@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import {Comment} from './comment';
-import {COMMENTS} from './mock-comments';
+import { Comment } from './comment';
+import { COMMENTS } from './mock-comments';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class CommentService {
 
   constructor() { }
 
-  getComments(): Comment[]{
+  getComments(): Comment[] {
     return COMMENTS;
   }
 }

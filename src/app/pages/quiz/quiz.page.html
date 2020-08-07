@@ -20,7 +20,7 @@
 </ion-header>
 
 
-<ion-content *ngIf="selectedtab == 'top'">
+<ion-content *ngIf="selectedtab === 'top'">
   <ion-item id="label">
     <ion-label>
       人気のクイズ
@@ -73,11 +73,11 @@
 </ion-content>
 
 
-<ion-content *ngIf="selectedtab == 'challenge' && selectedQ == '0'">
+<ion-content *ngIf="selectedtab === 'challenge' && selectedQ == '0'">
   <ion-item>
     <ion-label>
         <p id="quizsearch">クイズを探す</p>
-        <ion-searchbar 
+        <ion-searchbar
           showCancelButton="never"
           placeholder="入力してください"
           (ionInput)="getItems($event)">
@@ -118,7 +118,7 @@
   <ion-button class="bottom-right" fill="clear" button (click)="onNext('2')">次の問題へ→</ion-button>
 </ion-content>
 
-<ion-content padding *ngIf="selectedtab == 'challenge' && selectedQ == '2'">
+<ion-content padding *ngIf="selectedtab === 'challenge' && selectedQ === '2'">
   <h3>{{quiz.title}}</h3>
   <p>本：　著：</p>
   <p>作成者：{{quiz.maker}}</p>
@@ -132,7 +132,7 @@
   <ion-button class="bottom-right" fill="clear" button (click)="onNext('anser')">結果を見る→</ion-button>
 </ion-content>
 
-<ion-content padding *ngIf="selectedtab == 'challenge' && selectedQ == 'anser'">
+<ion-content padding *ngIf="selectedtab === 'challenge' && selectedQ === 'anser'">
   <h3>アクタージュクイズ</h3>
   <p>本：　著：</p>
   <p>作成者：{{quiz.maker}}</p>
@@ -152,7 +152,7 @@
   <ion-button class="bottom-right" fill="clear" button (click)="onNext('review')">レビュー→</ion-button>
 </ion-content>
 
-<ion-content *ngIf="selectedtab == 'challenge' && selectedQ == 'review'">
+<ion-content *ngIf="selectedtab === 'challenge' && selectedQ === 'review'">
   <ion-item>
     <ion-label>
       <h3>{{quiz.title}}</h3>
@@ -221,7 +221,7 @@
   </ion-item>
 </ion-content>
 
-<ion-content *ngIf="selectedtab == 'make' && selectedmake == '0'">
+<ion-content *ngIf="selectedtab === 'make' && selectedmake === '0'">
   <ion-item>
     <ion-label>
         <p id="quizsearch">作成するクイズの作品・シリーズ・著者を選ぶ</p>
@@ -243,7 +243,7 @@
   </ion-item>
 </ion-content>
 
-<ion-content *ngIf="selectedtab == 'make' && selectedmake == '1'">
+<ion-content *ngIf="selectedtab === 'make' && selectedmake === '1'">
   <ion-list>
   <ion-item>
     <p>対象作品</p>
@@ -274,7 +274,7 @@
   </ion-list>
 </ion-content>
 
-<ion-content padding *ngIf="selectedtab == 'make' && selectedmake == '2'">
+<ion-content padding *ngIf="selectedtab === 'make' && selectedmake === '2'">
   <div class="box">
     <p>問題分</p>
     <textarea [(ngModel)]="quiz.Q" rows="10" cols="50"></textarea>
@@ -297,7 +297,7 @@
   <ion-button button (click)="onMake('3')" class="bottom-right" fill="clear">次の問題へ→</ion-button>
 </ion-content>
 
-<ion-content *ngIf="selectedtab == 'make' && selectedmake == '3'">
+<ion-content *ngIf="selectedtab === 'make' && selectedmake === '3'">
   <ion-list>
     <ion-item>
       <p>対象作品</p>

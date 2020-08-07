@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import {Quiz} from './quiz';
-import {QUIZZES} from './mock-quizzes'
+import { QUIZZES } from './mock-quizzes';
+import { Quiz } from './quiz';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class QuizService {
 
   constructor() { }
 
-  getQuizzes(): Quiz[]{
+  getQuizzes(): Quiz[] {
     return QUIZZES;
   }
 }
