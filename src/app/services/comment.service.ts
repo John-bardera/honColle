@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Comment } from './comment';
-import { COMMENTS } from './mock-comments';
+import { COMMENTS } from '@/mock/mock-comments';
+import { Comment } from '@/models/comment';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Comment } from '@/comment';
-import { CommentService } from '@/comment.service';
-import { Quiz } from '@/quiz';
-import { QuizService } from '@/quiz.service';
+import { Comment } from '@/models/comment';
+import { CommentService } from '@/services/comment.service';
+import { Quiz } from '@/models/quiz';
+import { QuizService } from '@/services/quiz.service';
 
 @Component({
   selector: 'app-quiz',
