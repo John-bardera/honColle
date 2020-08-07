@@ -23,7 +23,7 @@ export class BookService {
       format: 'json',
       applicationId,
       affiliateId,
-      title: 'アクタージュ',
+      title: q,
       // author: 'アクタージュ',
       outOfStockFlag: '1',
     };

@@ -1,6 +1,6 @@
-<ion-item class="list-item" lines="full">
+<ion-item tappable (click)="click()" class="list-item" lines="full">
   <ion-thumbnail class="thumbnail">
-    <img [src]="book.smallImageUrl">
+    <img [src]="book.mediumImageUrl">
   </ion-thumbnail>
   <div class="text-wrapper">
     <div class="title">
@@ -10,7 +10,7 @@
       {{ book.author }}
     </div>
   </div>
-  <ion-buttons class="buttons">
+  <ion-buttons *ngIf="!isSearch" class="buttons">
     <ion-button size="small" fill="solid" shape="round">クイズにチャレンジ</ion-button>
     <ion-button size="small" fill="solid" shape="round">クイズを作成</ion-button>
   </ion-buttons>

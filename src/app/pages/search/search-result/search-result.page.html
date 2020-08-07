@@ -13,6 +13,8 @@
       <app-list-item
         *ngFor="let book of books"
         [book]="book"
+        [isSearch]="true"
+        (clicked)="selectedBook($event)"
       ></app-list-item>
     </ng-container>
     <ng-template #Empty>
