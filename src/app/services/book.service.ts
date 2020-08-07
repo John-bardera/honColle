@@ -30,7 +30,6 @@ export class BookService {
       affiliateId,
       title: q,
       // author: 'アクタージュ',
-      hits: '100',
       outOfStockFlag: '1',
     };
     return this.http.get<BookApiResponse>(this.url, { params })
