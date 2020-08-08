@@ -19,59 +19,6 @@
   </ion-toolbar>
 </ion-header>
 
-
-<ion-content *ngIf="selectedtab === 'top'">
-  <ion-item id="label">
-    <ion-label>
-      人気のクイズ
-    </ion-label>
-  </ion-item>
- <ion-list>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="../../../../resources/act.jpg">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>アクタージュのクイズ</h2>
-      <div class="quizmaker">
-        <p>著　マツキタクヤ</p>
-        <p class="ion-text-lowercase">apple　さん</p>
-        <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon>
-      </div>
-    </ion-label>
-    <ion-button color="danger" size="large" fill="outline">挑戦する</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="../../../../resources/act.jpg">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>永遠の0のクイズ</h2>
-      <div class="quizmaker">
-        <p>著　百田尚樹</p>
-        <p class="ion-text-lowercase">あいうえお　さん</p>
-      </div>
-    </ion-label>
-    <ion-button color="danger" size="large" fill="outline">挑戦する</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="../../../../resources/act.jpg">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>メイドインアビスのクイズ</h2>
-      <div class="quizmaker">
-        <p>著　つくしあきひと</p>
-        <p class="ion-text-lowercase">さとし　さん</p>
-        <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon>
-      </div>
-    </ion-label>
-    <ion-button color="danger" size="large" fill="outline">挑戦する</ion-button>
-  </ion-item>
- </ion-list>
-</ion-content>
-
-
 <ion-content *ngIf="selectedtab === 'challenge' && selectedQ == '0'">
   <ion-item>
     <ion-label>
@@ -228,6 +175,4 @@
 <!-- quiz-create-search
 <ng-container *ngIf="selectedtab === 'make' && selectedmake === '0'">
 </ng-container>-->
-<ion-content>
-  <router-outlet></router-outlet>
-</ion-content>
+<router-outlet></router-outlet>
