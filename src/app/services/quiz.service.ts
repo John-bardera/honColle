@@ -3,7 +3,6 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { QUIZZES } from '@/mock/mock-quizzes';
 import { Quiz } from '@/models';
 import { AppState } from '@/store';
 import { selectQuizzes } from '@/store/quiz.store';
@@ -17,9 +16,6 @@ export class QuizService {
     private store: Store<AppState>
   ) { }
 
-  getQuizzes(): Quiz[] {
-    return QUIZZES;
-  }
   getSortedQuizzes(): Observable<Array<Quiz>> {
     return this.store.pipe(
       select(selectQuizzes),

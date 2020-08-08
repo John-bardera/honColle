@@ -20,9 +20,12 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
     ComponentsModule
   ],
-  declarations: [QuizSearchPage]
+  declarations: [QuizSearchPage],
+  exports: [
+    QuizSearchPage
+  ]
 })
 export class QuizSearchPageModule {}

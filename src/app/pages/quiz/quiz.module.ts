@@ -7,7 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '@/components/components.module';
 import { QuizCreateSearchPageModule } from '@/pages/quiz/quiz-create-search/quiz-create-search.module';
 import { QuizCreateSearchPage } from '@/pages/quiz/quiz-create-search/quiz-create-search.page';
+import { QuizSearchPageModule } from '@/pages/quiz/quiz-search/quiz-search.module';
 import { QuizSearchPage } from '@/pages/quiz/quiz-search/quiz-search.page';
+import { QuizTopPageModule } from '@/pages/quiz/quiz-top/quiz-top.module';
 import { QuizTopPage } from '@/pages/quiz/quiz-top/quiz-top.page';
 
 import { QuizPage } from './quiz.page';
@@ -41,7 +43,9 @@ import { QuizPage } from './quiz.page';
       }
     ]),
     ComponentsModule,
-    QuizCreateSearchPageModule
+    QuizCreateSearchPageModule,
+    QuizTopPageModule,
+    QuizSearchPageModule,
   ],
   declarations: [QuizPage]
 })

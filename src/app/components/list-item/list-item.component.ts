@@ -21,11 +21,11 @@ export class ListItemComponent implements OnInit {
   @Output() clickedButton = new EventEmitter<ClickedButtonParams>();
 
   isBook: boolean;
-  constructor() {
-    this.isBook = this.book && !this.quiz;
-  }
+  constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isBook = this.book && !!this.book.id;
+  }
 
   click() {
     this.clicked.emit(this.book);
