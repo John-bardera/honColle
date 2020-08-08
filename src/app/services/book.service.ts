@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { Book, BookApiResponse, ParsedBookApiResponse } from '@/models';
+import { AppState } from '@/store';
+import { selectBooks, setBooks } from '@/store/book.store';
 
 import { affiliateId, applicationId, searchBoundaryValue } from '../config';
 
@@ -13,6 +16,7 @@ export class BookService {
 
   constructor(
     private http: HttpClient,
+    private store: Store<AppState>,
   ) { }
 
   parseQueryOfSearchFromGlobalAndSearch(q: string): Observable<Array<Book>> {
@@ -50,5 +54,19 @@ export class BookService {
           };
         })
       );
+  }
+  searchFromLocalStore(q: string): Observable<Array<Book>> {
+    return this.store.pipe(
+      select(selectBooks),
+      map((books: Array<Book>) => books.filter(book => book.title.includes(q) || book.author.includes(q)))
+    );
+  }
+  initBooks() {
+    this.parseQueryOfSearchFromGlobalAndSearch('アクタージュ').pipe(
+      map(books => {
+        this.store.dispatch(setBooks({ books: books.slice(0, 10) }));
+      }),
+      take(1)
+    ).subscribe();
   }
 }

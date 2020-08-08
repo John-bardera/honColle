@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
+import { ComponentsModule } from '@/components/components.module';
+
 import { QuizPage } from './quiz.page';
 
 @NgModule({
@@ -16,7 +18,8 @@ import { QuizPage } from './quiz.page';
         path: '',
         component: QuizPage
       }
-    ])
+    ]),
+    ComponentsModule
   ],
   declarations: [QuizPage]
 })

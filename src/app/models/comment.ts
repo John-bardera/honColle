@@ -1,5 +1,6 @@
 export interface Comment {
-    maker: string;
-    content: string;
-    star: number;
+  id: string;
+  maker: string;
+  content: string;
+  star: number;
 }

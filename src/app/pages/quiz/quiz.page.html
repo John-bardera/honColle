@@ -5,7 +5,7 @@
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment value="top" (ionChange)="segmentChanged($event)">
       <ion-segment-button button (click)="onSelectTab('top')">
         <b>トップ</b>
       </ion-segment-button>
@@ -78,9 +78,14 @@
     <ion-label>
         <p id="quizsearch">クイズを探す</p>
         <ion-searchbar
+          class="searchbar"
+          color="favorite"
+          mode="ios"
+          enterkeyhint="search"
           showCancelButton="never"
           placeholder="入力してください"
-          (ionInput)="getItems($event)">
+          inputmode="search"
+          (ionChange)="searchBooks($event)">
         </ion-searchbar>
         <p>検索結果</p>
     </ion-label>
@@ -225,11 +230,26 @@
   <ion-item>
     <ion-label>
         <p id="quizsearch">作成するクイズの作品・シリーズ・著者を選ぶ</p>
-        <ion-searchbar class="searchbar" color="favorite" mode="ios" enterkeyhint="search" placeholder="検索" inputmode="search"></ion-searchbar>
+        <ion-searchbar
+          class="searchbar"
+          color="favorite"
+          mode="ios"
+          enterkeyhint="search"
+          placeholder="検索"
+          inputmode="search"
+          (ionChange)="searchBooks($event)"
+        ></ion-searchbar>
         <p>検索結果</p>
     </ion-label>
   </ion-item>
-  <ion-item>
+  <app-list-item
+    *ngFor="let book of searchedBooks$ | async"
+    [book]="book"
+    [isSearch]="true"
+    [is4Quiz]="true"
+    (clickedButton)="onMake('1')"
+  ></app-list-item>
+  <!--<ion-item>
     <ion-thumbnail slot="start">
       <img src="../../../../resources/act.jpg">
     </ion-thumbnail>
@@ -240,7 +260,7 @@
       </div>
     </ion-label>
     <ion-button button (click) ="onMake('1')" class="challengebutton" color="danger" size="default" fill="outline">+作成する</ion-button>
-  </ion-item>
+  </ion-item>-->
 </ion-content>
 
 <ion-content *ngIf="selectedtab === 'make' && selectedmake === '1'">

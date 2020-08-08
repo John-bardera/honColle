@@ -1,7 +1,8 @@
 export interface Quiz {
-    title: string;
-    maker: string;
-    Q: string;
-    choices: Array<string>;
-    correct: number;
+  id: string;
+  title: string;
+  maker: string;
+  Q: string;
+  choices: Array<string>;
+  correct: number;
 }

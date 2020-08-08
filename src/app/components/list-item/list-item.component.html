@@ -13,14 +13,19 @@
   <ng-container *ngIf="!isSearch">
     <ng-container *ngIf="book.isRead; else IsNotRead">
       <ion-buttons class="buttons">
-        <ion-button size="small" fill="solid" shape="round">クイズにチャレンジ</ion-button>
-        <ion-button size="small" fill="solid" shape="round">クイズを作成</ion-button>
+        <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('challengeQuiz')">クイズにチャレンジ</ion-button>
+        <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('createQuiz')">クイズを作成</ion-button>
       </ion-buttons>
     </ng-container>
     <ng-template #IsNotRead>
       <ion-buttons class="buttons">
-        <ion-button size="small" fill="solid" shape="round">既読登録</ion-button>
+        <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('setRead')">既読登録</ion-button>
       </ion-buttons>
     </ng-template>
+  </ng-container>
+  <ng-container *ngIf="isSearch && is4Quiz">
+    <ion-buttons class="buttons">
+      <ion-button size="small" fill="outline" shape="round" (click)="sendClicked('createQuiz')">作成する</ion-button>
+    </ion-buttons>
   </ng-container>
 </ion-item>

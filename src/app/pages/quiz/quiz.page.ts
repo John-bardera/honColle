@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
+import { Book } from '@/models';
 import { Comment } from '@/models/comment';
-import { CommentService } from '@/services/comment.service';
 import { Quiz } from '@/models/quiz';
+import { BookService } from '@/services';
+import { CommentService } from '@/services/comment.service';
 import { QuizService } from '@/services/quiz.service';
+import { AppState } from '@/store';
+import { selectBooks } from '@/store/book.store';
 
 @Component({
   selector: 'app-quiz',
@@ -21,6 +27,7 @@ export class QuizPage implements OnInit {
   correctnum: number; // 正解数
   // クイズ作成
   quiz: Quiz = {
+    id: '',
     title: '',
     maker: '',
     Q: '',
@@ -30,6 +37,7 @@ export class QuizPage implements OnInit {
 
   // コメント作成
   comment: Comment = {
+    id: '',
     maker: '',
     content: '',
     star: 0,
@@ -39,11 +47,19 @@ export class QuizPage implements OnInit {
   selectedQ: string;
   selectedmake: string;
 
-  constructor(private quizService: QuizService, private commentService: CommentService) {
+  searchedBooks$: Observable<Array<Book>>;
+
+  constructor(
+    private store: Store<AppState>,
+    private quizService: QuizService,
+    private commentService: CommentService,
+    private bookService: BookService,
+  ) {
     this.selectedtab = 'make';
     this.selectedQ = '0';
     this.selectedmake = '0';
     this.correctnum = 0;
+    this.searchedBooks$ =　this.store.pipe(select(selectBooks));
   }
 
   ngOnInit() {
@@ -72,7 +88,7 @@ export class QuizPage implements OnInit {
 
   // 選択肢と答え合致数
   matchChoices() {
-    if (this.selectednum == this.quiz.correct) {
+    if (this.selectednum === this.quiz.correct) {
       this.correctnum += 1;
     }
     return this.correctnum;
@@ -80,29 +96,14 @@ export class QuizPage implements OnInit {
 
   // コメント追加
   addComment(comment: Comment) {
-    if (comment.content != '') {
+    if (comment.content !== '') {
       this.comments.push(comment);
     }
   }
 
-  async getItems(ev: any) {
+  async searchBooks(ev: any) {
     const value = ev.target.value; // イベントを発生させたオブジェクトのvalueつまり入力した文字
-    if (value === '') {
-      this.allquizzes;
-    }
-    // if the value is an empty string don't filter the items
-    if (value !== '') {
-      this.quizzes = this.allquizzes.filter((quiz) => {
-        // 前方一致
-        /*if(value.match(/^[A-Za-z0-9]*$/)){
-          return (item.toString().toLowerCase().indexOf(value.toLowerCase()) === 0);
-        }else{
-          return (item.toString().toLowerCase().indexOf(value.toLowerCase()) === 0);
-        }*/
-        // 部分一致
-          return (quiz.title.toLowerCase().includes(value));
-      });
-    }
+    this.searchedBooks$ = value ? this.bookService.searchFromLocalStore(value) : this.store.pipe(select(selectBooks));
   }
 
   onSelectTab(tab: string) {
@@ -115,6 +116,9 @@ export class QuizPage implements OnInit {
 
   onMake(make: string) {
     this.selectedmake = make;
+  }
+  segmentChanged(ev: any) {
+    return;
   }
 }
 

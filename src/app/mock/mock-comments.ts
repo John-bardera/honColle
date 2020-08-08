@@ -1,5 +1,5 @@
-import { Comment } from '../models/comment';
+import { Comment } from '@/models';
 
 export const COMMENTS: Comment[] = [
-    {maker: 'あんこ', content: '全部同じ問題やん', star: 1},
+    {id: '', maker: 'あんこ', content: '全部同じ問題やん', star: 1},
 ];
