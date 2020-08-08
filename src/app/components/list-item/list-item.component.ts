@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Book } from '@/models';
+import { Book, Quiz } from '@/models';
 
 export interface ClickedButtonParams {
   message: string;
@@ -13,13 +13,17 @@ export interface ClickedButtonParams {
 })
 export class ListItemComponent implements OnInit {
   @Input() book: Book;
+  @Input() quiz: Quiz;
   @Input() isSearch = false;
   @Input() is4Quiz = false;
   @Input() hasNotButtons = false;
   @Output() clicked = new EventEmitter<Book>();
   @Output() clickedButton = new EventEmitter<ClickedButtonParams>();
 
-  constructor() { }
+  isBook: boolean;
+  constructor() {
+    this.isBook = this.book && !this.quiz;
+  }
 
   ngOnInit() {}
 
@@ -32,5 +36,16 @@ export class ListItemComponent implements OnInit {
       content: this.book,
     };
     this.clickedButton.emit(params);
+  }
+  getQuizStar(): number {
+    let star = 0;
+    if (this.quiz.comments.length) {
+      this.quiz.comments.map(comment => star += comment.star);
+      star = Math.round(star / this.quiz.comments.length);
+    }
+    return star;
+  }
+  convert2ArrayFromNumber(x: number) {
+    return Array(x).keys();
   }
 }
