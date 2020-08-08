@@ -38,8 +38,8 @@ ion-icon[name="star-outline"]{
     color: #ffd700;
 }
 
-#quizsearch{
-    margin-left: 10px;
+.quiz-search {
+  margin-left: 10px;
 }
 
 .block{
@@ -48,9 +48,9 @@ ion-icon[name="star-outline"]{
 }
 
 .bottom-right{
-    position: absolute;
-    bottom : 0;
-    right : 0;
+  position: absolute;
+  bottom : 0;
+  right : 0;
 }
 
 #anser{

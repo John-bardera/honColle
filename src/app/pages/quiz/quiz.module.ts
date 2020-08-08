@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ComponentsModule } from '@/components/components.module';
+import { QuizCreateSearchPageModule } from '@/pages/quiz/quiz-create-search/quiz-create-search.module';
+import { QuizCreateSearchPage } from '@/pages/quiz/quiz-create-search/quiz-create-search.page';
 
 import { QuizPage } from './quiz.page';
 
@@ -16,10 +18,25 @@ import { QuizPage } from './quiz.page';
     RouterModule.forChild([
       {
         path: '',
-        component: QuizPage
+        children: [
+          {
+            path: '',
+            component: QuizPage
+          },
+          {
+            path: 'create',
+            children: [
+              {
+                path: '',
+                component: QuizCreateSearchPage,
+              }
+            ]
+          }
+        ],
       }
     ]),
-    ComponentsModule
+    ComponentsModule,
+    QuizCreateSearchPageModule
   ],
   declarations: [QuizPage]
 })

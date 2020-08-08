@@ -47,8 +47,6 @@ export class QuizPage implements OnInit {
   selectedQ: string;
   selectedmake: string;
 
-  searchedBooks$: Observable<Array<Book>>;
-
   constructor(
     private store: Store<AppState>,
     private quizService: QuizService,
@@ -59,7 +57,6 @@ export class QuizPage implements OnInit {
     this.selectedQ = '0';
     this.selectedmake = '0';
     this.correctnum = 0;
-    this.searchedBooks$ =　this.store.pipe(select(selectBooks));
   }
 
   ngOnInit() {
@@ -101,21 +98,12 @@ export class QuizPage implements OnInit {
     }
   }
 
-  async searchBooks(ev: any) {
-    const value = ev.target.value; // イベントを発生させたオブジェクトのvalueつまり入力した文字
-    this.searchedBooks$ = value ? this.bookService.searchFromLocalStore(value) : this.store.pipe(select(selectBooks));
-  }
-
   onSelectTab(tab: string) {
     this.selectedtab = tab;
   }
 
   onNext(question: string) {
     this.selectedQ = question;
-  }
-
-  onMake(make: string) {
-    this.selectedmake = make;
   }
   segmentChanged(ev: any) {
     return;

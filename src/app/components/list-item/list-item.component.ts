@@ -15,6 +15,7 @@ export class ListItemComponent implements OnInit {
   @Input() book: Book;
   @Input() isSearch = false;
   @Input() is4Quiz = false;
+  @Input() hasNotButtons = false;
   @Output() clicked = new EventEmitter<Book>();
   @Output() clickedButton = new EventEmitter<ClickedButtonParams>();
 
