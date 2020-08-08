@@ -102,7 +102,6 @@
     "lint-staged": "^10.2.11",
     "protractor": "^5.4.4",
     "rxjs-tslint": "^0.1.8",
-    "sass-lint": "git+https://github.com/justinanastos/sass-lint.git#fix/1224/property-sort-order-throwing-css-variables",
     "ts-node": "~7.0.0",
     "tslint": "^5.20.1",
     "tslint-eslint-rules": "^5.4.0",
