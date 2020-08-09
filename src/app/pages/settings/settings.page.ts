@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { PushService } from '../../push.service';
+
 @Component({
   selector: 'app-settings',
   templateUrl: 'settings.page.html',
@@ -9,6 +11,11 @@ export class SettingsPage {
   recBook = false;
   nRead = false;
   start = false;
-  constructor() { }
+  constructor(private pushService: PushService) {
+    //this.pushService.recBook = this.recBook;
+  }
 
+  changedRecBook(ev: any){
+    this.pushService.recBook = ev.target.value === 'on';
+  }
 }
