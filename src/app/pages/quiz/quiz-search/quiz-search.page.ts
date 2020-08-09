@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { ClickedButtonParams } from '@/components/list-item/list-item.component';
+import { QuizChallengeComponent } from '@/components/quiz-challenge/quiz-challenge.component';
 import { Quiz } from '@/models';
 import { QuizService } from '@/services/quiz.service';
 import { AppState } from '@/store';
 import { selectQuizzes } from '@/store/quiz.store';
-import {ClickedButtonParams} from '@/components/list-item/list-item.component';
-import {ModalController} from '@ionic/angular';
-import {QuizChallengeComponent} from '@/components/quiz-challenge/quiz-challenge.component';
 
 @Component({
   selector: 'app-quiz-search',
