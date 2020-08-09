@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Quiz} from '@/models';
-import {ModalController} from '@ionic/angular';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
+import { Quiz } from '@/models';
 
 @Component({
   selector: 'app-quiz-challenge',

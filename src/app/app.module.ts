@@ -9,6 +9,9 @@ import { StoreModule } from '@ngrx/store';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { QuizChallengeComponent } from '@/components/quiz-challenge/quiz-challenge.component';
+import { QuizCreateComponent } from '@/components/quiz-create/quiz-create.component';
+
 import { httpInterceptorProviders } from '../http-interceptors';
 import { ApisModule } from './apis/apis.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,8 +19,6 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { ServicesModule } from './services/services.module';
 import { reducers } from './store';
-import {QuizChallengeComponent} from '@/components/quiz-challenge/quiz-challenge.component';
-import {QuizCreateComponent} from '@/components/quiz-create/quiz-create.component';
 
 @NgModule({
   declarations: [AppComponent],
