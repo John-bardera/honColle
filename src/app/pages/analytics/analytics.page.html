@@ -4,21 +4,12 @@
       レポート
     </ion-title>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-segment (ionChange)="segmentChanged($event)">
-      <ion-segment-button button (click)="onSelectTab('author')">
-        <b>著者</b>
-      </ion-segment-button>
-      <ion-segment-button button (click)="onSelectTab('series')">
-        <b>シリーズ</b>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+  <ion-title>著者</ion-title>
 </ion-header>
 
 <ion-content [class.hidden]="selected !== 'author'">
   <ion-list>
-    <ion-item [button]="true">
+    <ion-item [button]="true" (click)="" >
       <ion-label>マツキタクヤ</ion-label>
     </ion-item>
     <ion-item [button]="true">

@@ -2,6 +2,13 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 
 import Chart from 'chart.js';
 
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { Book } from '@/models';
+import { AppState } from '@/store';
+import { selectBooks } from '@/store/book.store';
+
 @Component({
   selector: 'app-analytics',
   templateUrl: 'analytics.page.html',
