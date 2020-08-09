@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { BookService, QuizService } from '@/services';
+import { BookService, PushService, QuizService } from '@/services';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private bookService: BookService,
     private quizService: QuizService,
+    private pushService: PushService,
   ) {
     this.initializeApp();
   }
@@ -28,6 +29,7 @@ export class AppComponent {
       this.splashScreen.hide();
       this.bookService.initBooks();
       this.quizService.initQuizzes();
+      this.pushService.requestPermission();
     });
   }
 }
