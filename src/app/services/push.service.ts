@@ -21,20 +21,22 @@ export class PushService {
     LocalNotifications.areEnabled();
   }
 
-  setLocalPush() {
-    // 5秒後に通知が来る
-     const date = new Date(Date.now() + 1000 * 5);
-     LocalNotifications.schedule({
-        notifications: [
-          {
-            title: 'Title',
-            body: 'Body',
-            id: 1,
-            schedule: { at: date },
-            sound: null,
-          }
-        ]
+  async setLocalPush() {
+    const notifs = await LocalNotifications.schedule({
+      notifications: [
+        {
+          title: 'Title',
+          body: 'Body',
+          id: 1,
+          schedule: { at: new Date(Date.now() + 1000 * 5) },
+          sound: null,
+          attachments: null,
+          actionTypeId: '',
+          extra: null
+        }
+      ]
     });
+    console.log('scheduled notifications', notifs);
   }
 
   stopLocalPush() {
@@ -45,11 +47,13 @@ export class PushService {
     });
   }
 
-  reccomendBook() {
+  async reccomendBook() {
+    await this.setLocalPush();
+    /*
     if (this.recBook) {
       this.setLocalPush();
     } else {
       this.stopLocalPush();
-    }
+    }*/
   }
 }

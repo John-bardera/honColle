@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { PushService } from '../../push.service';
+import { PushService } from '../../services/push.service';
 
 @Component({
   selector: 'app-settings',
