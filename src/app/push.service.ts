@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Plugins } from '@capacitor/core';
 const { LocalNotifications } = Plugins;
 
@@ -7,47 +8,47 @@ const { LocalNotifications } = Plugins;
 })
 export class PushService {
 
-  //各種設定
+  // 各種設定
   recBook: boolean;
 
   constructor() { }
 
-  requestPermission(){
+  requestPermission() {
     LocalNotifications.requestPermission();
   }
 
-  areEnabled(){
+  areEnabled() {
     LocalNotifications.areEnabled();
   }
 
   setLocalPush() {
     // 5秒後に通知が来る
      const date = new Date(Date.now() + 1000 * 5);
-    LocalNotifications.schedule({
-      notifications: [
-        {
-          title: 'Title',
-          body: 'Body',
-          id: 1,
-          schedule: { at: date },
-          sound: null,
-        }
-      ]
+     LocalNotifications.schedule({
+        notifications: [
+          {
+            title: 'Title',
+            body: 'Body',
+            id: 1,
+            schedule: { at: date },
+            sound: null,
+          }
+        ]
     });
   }
 
-  stopLocalPush(){
-    LocalNotifications.getPending().then(res =>{
+  stopLocalPush() {
+    LocalNotifications.getPending().then(res => {
       LocalNotifications.cancel(res);
-    }, error =>{
+    }, error => {
       console.log(error);
     });
   }
 
-  reccomendBook(){
-    if(this.recBook){
+  reccomendBook() {
+    if (this.recBook) {
       this.setLocalPush();
-    }else{
+    } else {
       this.stopLocalPush();
     }
   }

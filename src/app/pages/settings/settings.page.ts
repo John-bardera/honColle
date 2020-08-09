@@ -12,10 +12,10 @@ export class SettingsPage {
   nRead = false;
   start = false;
   constructor(private pushService: PushService) {
-    //this.pushService.recBook = this.recBook;
+    // this.pushService.recBook = this.recBook;
   }
 
-  changedRecBook(ev: any){
+  changedRecBook(ev: any) {
     this.pushService.recBook = ev.target.value === 'on';
   }
 }
