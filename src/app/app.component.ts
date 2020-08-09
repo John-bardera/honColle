@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { BookService } from '@/services';
+import { BookService, QuizService } from '@/services';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private bookService: BookService,
+    private quizService: QuizService,
   ) {
     this.initializeApp();
   }
@@ -26,6 +27,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.bookService.initBooks();
+      this.quizService.initQuizzes();
     });
   }
 }

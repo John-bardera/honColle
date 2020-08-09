@@ -19,21 +19,22 @@ export class BookService {
     private store: Store<AppState>,
   ) { }
 
-  parseQueryOfSearchFromGlobalAndSearch(q: string): Observable<Array<Book>> {
-    return this.searchFromGlobal(q).pipe(map(res => {
+  parseQueryOfSearchFromGlobalAndSearch(q: string, byIsbn: boolean = false): Observable<Array<Book>> {
+    return this.searchFromGlobal(q, byIsbn).pipe(map(res => {
       if (res.count > searchBoundaryValue) {
         throwError('Hits over search Boundary Value.');
       }
       return res.books.sort((a, b) => a.title > b.title ? 1 : -1);
     }));
   }
-  searchFromGlobal(q: string): Observable<ParsedBookApiResponse> {
+  searchFromGlobal(q: string, byIsbn: boolean): Observable<ParsedBookApiResponse> {
     const params = {
       format: 'json',
       applicationId,
       affiliateId,
-      title: q,
+      ...(byIsbn ? {} : {title: q}),
       // author: 'アクタージュ',
+      ...(byIsbn ? {isbn: q} : {}),
       outOfStockFlag: '1',
     };
     return this.http.get<BookApiResponse>(this.url, { params })
@@ -64,7 +65,15 @@ export class BookService {
   initBooks() {
     this.parseQueryOfSearchFromGlobalAndSearch('アクタージュ').pipe(
       map(books => {
-        this.store.dispatch(setBooks({ books: books.slice(0, 10) }));
+        this.store.dispatch(
+          setBooks({
+            books: books
+              .slice(0, 12)
+              .map(book => {
+                book.id = book.isbn;
+                return book;
+              })
+          }));
       }),
       take(1)
     ).subscribe();
