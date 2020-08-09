@@ -4,21 +4,24 @@ ion-title {
 ion-list{
     --background:#FFFAF0;
 }
-h1 {
-    font-size: 23px;
-    color: #666666;
-    background:#FFFAF0;
+div {
+  font-size: 2.4rem;
+  color: #666666;
+  background:#FFFAF0;
+  .title {
+    font-size: 2.8rem;
+    padding: 4px 0 4px 12px;
+  }
 }
 ion-item {
-    font-size: 15px;
+    font-size: 1.6rem;
     --background:#FFFAF0;
 }
 ion-label {
     color: #666666;
 }
 .contents {
-    padding-bottom: 50px;
-    margin-bottom: 50px;
+    padding-bottom: 8rem;
 }
 
 .onOff {
