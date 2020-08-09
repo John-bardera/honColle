@@ -28,8 +28,8 @@ export class AnalyticsPage {
           if(!author.includes(book.author)){
             author.push(book.author);
           }
-          return author;
         })
+        return author;
       })
     )
   }
