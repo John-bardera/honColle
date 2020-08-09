@@ -85,21 +85,19 @@ export class BookService {
     });
   }
   recommendBook(): Observable<Book> {
-    if (this.enableRecommendBooks$.value) {
-      const isbnHasBooks = [];
-      return this.store.pipe(
-        select(selectBooks),
-        map((books: Array<Book>) => {
-          books.map(book => isbnHasBooks.push(book.isbn));
-          return books.length ? books[Math.floor(Math.random() * books.length)].author : '神永学';
-        }),
-        mergeMap((q: string) => {
-          return this.parseQueryOfSearchFromGlobalAndSearch(q.split('/')[0], false, true);
-        }),
-        map((books: Array<Book>) => {
-          return books.filter(book => !isbnHasBooks.includes(book.isbn))[0];
-        })
-      );
-    }
+    const isbnHasBooks = [];
+    return this.store.pipe(
+      select(selectBooks),
+      map((books: Array<Book>) => {
+        books.map(book => isbnHasBooks.push(book.isbn));
+        return books.length ? books[Math.floor(Math.random() * books.length)].author : '神永学';
+      }),
+      mergeMap((q: string) => {
+        return this.parseQueryOfSearchFromGlobalAndSearch(q.split('/')[0], false, true);
+      }),
+      map((books: Array<Book>) => {
+        return books.filter(book => !isbnHasBooks.includes(book.isbn))[0];
+      })
+    );
   }
 }

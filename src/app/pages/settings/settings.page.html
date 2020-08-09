@@ -11,21 +11,21 @@
     <div class="title">コンテンツ設定</div>
     <ion-item class="recomend">
       <ion-label>おすすめの本表示</ion-label>
-      <ion-label class="onOff">{{ recBook ? 'ON' : 'OFF' }}</ion-label>
-      <ion-toggle slot="end" [(ngModel)]="recBook"></ion-toggle>
+      <!--<ion-label class="onOff">{{ (recBook$ | async) ? 'ON' : 'OFF' }}</ion-label>-->
+      <ion-toggle slot="end" [checked]="(recBook$ | async) ? 'on' : 'off'" (ionChange)="changedRecBook($event)"></ion-toggle>
     </ion-item>
   </div>
   <div class="remind">
     <div class="title">通知設定</div>
     <ion-item class="notread">
       <ion-label>しばらく読んでいない本の通知</ion-label>
-      <ion-label class="onOff">{{ nRead ? 'ON' : 'OFF' }}</ion-label>
-      <ion-toggle slot="end" [(ngModel)]="nRead"></ion-toggle>
+      <!--<ion-label class="onOff">{{ (nRead$ | async) ? 'ON' : 'OFF' }}</ion-label>-->
+      <ion-toggle slot="end" [checked]="(nRead$ | async) ? 'on' : 'off'" (ionChange)="changedNRead($event)"></ion-toggle>
     </ion-item>
     <ion-item class="close">
       <ion-label>しばらくアプリを起動していない通知</ion-label>
-      <ion-label class="onOff">{{ start ? 'ON' : 'OFF' }}</ion-label>
-      <ion-toggle slot="end" [(ngModel)]="start"></ion-toggle>
+      <!--<ion-label class="onOff">{{ (start$ | async) ? 'ON' : 'OFF' }}</ion-label>-->
+      <ion-toggle slot="end" [checked]="(start$ | async) ? 'on' : 'off'" (ionChange)="changedStart($event)"></ion-toggle>
     </ion-item>
   </div>
 </ion-content>

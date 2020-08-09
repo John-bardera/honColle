@@ -17,12 +17,14 @@ export class HomePage {
   books$: Observable<Array<Book>>;
   recommendedBook$: Observable<Book>;
   nowLoading$: Observable<boolean>;
+  enableRecommendBooks$: Observable<boolean>;
   constructor(
     private store: Store<AppState>,
     private bookService: BookService,
     private initService: InitService,
   ) {
     this.books$ = this.store.pipe(select(selectBooks));
+    this.enableRecommendBooks$ = this.bookService.enableRecommendBooks$;
     this.recommendedBook$ = this.bookService.recommendBook();
     this.nowLoading$ = this.initService.nowLoading$;
   }

@@ -11,12 +11,14 @@
   <ng-container *ngIf="!(nowLoading$ | async)">
     <ng-container *ngIf="books$ | async as books">
       <ng-container *ngIf="books.length; else Empty">
-        <ng-container *ngIf="recommendedBook$ | async as recommendedBook">
-          <div class="recommend-book-wrapper">
-            <div class="title">おすすめの本</div>
-            <app-list-item [book]="recommendedBook" [isSearch]="true"></app-list-item>
-          </div>
-          <div class="title">本棚</div>
+        <ng-container *ngIf="enableRecommendBooks$ | async">
+          <ng-container *ngIf="recommendedBook$ | async as recommendedBook">
+            <div class="recommend-book-wrapper">
+              <div class="title">おすすめの本</div>
+              <app-list-item [book]="recommendedBook" [isSearch]="true"></app-list-item>
+            </div>
+            <div class="title">本棚</div>
+          </ng-container>
         </ng-container>
         <app-list-item
           *ngFor="let book of sortedBooks(books)"

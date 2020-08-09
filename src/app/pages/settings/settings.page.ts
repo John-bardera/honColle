@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { PushService } from '@/services';
+import {BookService, PushService} from '@/services';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -8,12 +9,25 @@ import { PushService } from '@/services';
   styleUrls: ['settings.page.scss'],
 })
 export class SettingsPage {
-  recBook = false;
-  nRead = false;
-  start = false;
-  constructor(private pushService: PushService) {}
+  recBook$: Observable<boolean>;
+  nRead$: Observable<boolean>;
+  start$: Observable<boolean>;
+  constructor(
+    private pushService: PushService,
+    private bookService: BookService,
+  ) {
+    this.recBook$ = this.bookService.enableRecommendBooks$;
+    this.nRead$ = this.pushService.enableNotice4UnreadLongTime$;
+    this.start$ = this.pushService.enableNotice4NoOpenedLongTime$;
+  }
 
   changedRecBook(ev: any) {
-    // this.pushService.recBook = ev.target.value === 'on';
+    this.bookService.enableRecommendBooks$.next(ev.detail.checked);
+  }
+  changedNRead(ev: any) {
+    this.pushService.enableNotice4UnreadLongTime$.next(ev.detail.checked);
+  }
+  changedStart(ev: any) {
+    this.pushService.enableNotice4NoOpenedLongTime$.next(ev.detail.checked);
   }
 }
