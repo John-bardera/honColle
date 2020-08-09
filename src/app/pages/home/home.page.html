@@ -18,7 +18,11 @@
           </div>
           <div class="title">本棚</div>
         </ng-container>
-        <app-list-item *ngFor="let book of sortedBooks(books)" [book]="book"></app-list-item>
+        <app-list-item
+          *ngFor="let book of sortedBooks(books)"
+          [book]="book"
+          (clickedButton)="clickedButton($event)"
+        ></app-list-item>
       </ng-container>
       <ng-template #Empty>
         <app-empty-state>

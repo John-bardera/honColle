@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { Book } from '@/models';
 import { BookService, InitService } from '@/services';
 import { AppState } from '@/store';
-import { selectBooks } from '@/store/book.store';
+import {selectBooks, setBook} from '@/store/book.store';
+import {ClickedButtonParams} from '@/components/list-item/list-item.component';
 
 @Component({
   selector: 'app-home',
@@ -27,5 +28,14 @@ export class HomePage {
   }
   sortedBooks(books: Array<Book>) {
     return books.sort((a, b) => a.title > b.title ? 1 : -1);
+  }
+  clickedButton(ev: ClickedButtonParams) {
+    if (ev.message === 'setRead') {
+      this.store.dispatch(setBook({ book: {...ev.content, isRead: true} }));
+    } else if (ev.message === 'searchQuiz') {
+      console.log('');
+    } else if (ev.message === 'creatQuiz') {
+      console.log('');
+    }
   }
 }
