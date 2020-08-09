@@ -8,16 +8,25 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="books$ | async as books">
-    <ng-container *ngIf="books.length; else Empty">
-      <app-list-item *ngFor="let book of sortedBooks(books)" [book]="book"></app-list-item>
+  <ng-container *ngIf="!(nowLoading$ | async)">
+    <ng-container *ngIf="books$ | async as books">
+      <ng-container *ngIf="books.length; else Empty">
+        <ng-container *ngIf="recommendedBook$ | async as recommendedBook">
+          <div class="recommend-book-wrapper">
+            <div class="title">おすすめの本</div>
+            <app-list-item [book]="recommendedBook" [isSearch]="true"></app-list-item>
+          </div>
+          <div class="title">本棚</div>
+        </ng-container>
+        <app-list-item *ngFor="let book of sortedBooks(books)" [book]="book"></app-list-item>
+      </ng-container>
+      <ng-template #Empty>
+        <app-empty-state>
+          <div class=temp>
+            登録されている本がありません。<br>検索から本を登録してみましょう！
+          </div>
+        </app-empty-state>
+      </ng-template>
     </ng-container>
-    <ng-template #Empty>
-      <app-empty-state>
-        <div class=temp>
-        登録されている本がありません。<br>検索から本を登録してみましょう！
-        </div>
-      </app-empty-state>
-    </ng-template>
   </ng-container>
 </ion-content>

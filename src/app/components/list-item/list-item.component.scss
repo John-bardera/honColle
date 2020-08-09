@@ -1,6 +1,6 @@
 .list-item {
   display: flex;
-  height: 9rem;
+  height: 10rem;
   --padding-start: 0;
   --inner-padding-start: 8px;
   --inner-padding-top: 4px;
@@ -8,10 +8,13 @@
   --inner-padding-bottom: 4px;
   .thumbnail {
     height: 100%;
-    flex-basis: 5.2rem;
+    flex-basis: 5.8rem;
   }
   .text-wrapper {
-    flex-basis: calc(100% - 5.2rem - 12rem);
+    &.has-no-buttons {
+      flex-basis: calc(100% - 5.8rem);
+    }
+    flex-basis: calc(100% - 5.8rem - 12rem);
     height: 100%;
     width: 40vw;
     padding-left: 8px;

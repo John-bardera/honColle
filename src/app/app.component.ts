@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { BookService, PushService, QuizService } from '@/services';
+import { BookService, InitService, PushService, QuizService } from '@/services';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +13,11 @@ import { BookService, PushService, QuizService } from '@/services';
 })
 export class AppComponent {
   constructor(
+    private loadingCtrl: LoadingController,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private bookService: BookService,
-    private quizService: QuizService,
-    private pushService: PushService,
+    private initService: InitService,
   ) {
     this.initializeApp();
   }
@@ -27,9 +26,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.bookService.initBooks();
-      this.quizService.initQuizzes();
-      this.pushService.requestPermission();
+      this.initService.initOther();
     });
   }
 }

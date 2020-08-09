@@ -23,7 +23,7 @@ export class PushService {
   ) { }
 
   requestPermission() {
-    LocalNotifications.requestPermission().then(
+    return LocalNotifications.requestPermission().then(
       _ => {
         this.setNotification4UnreadLongTime();
       }

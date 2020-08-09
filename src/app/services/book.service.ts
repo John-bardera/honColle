@@ -1,39 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable, throwError } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { map, mergeMap, take } from 'rxjs/operators';
 
 import { Book, BookApiResponse, ParsedBookApiResponse } from '@/models';
 import { AppState } from '@/store';
-import { selectBooks, setBooks } from '@/store/book.store';
+import { selectBooks, setBook, setBooks } from '@/store/book.store';
 
-import { affiliateId, applicationId, searchBoundaryValue } from '../config';
+import { affiliateId, applicationId, enableRecommendBooks, searchBoundaryValue } from '../config';
 
 @Injectable()
 export class BookService {
   url = 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404';
+  enableRecommendBooks$ = new BehaviorSubject(enableRecommendBooks);
 
   constructor(
     private http: HttpClient,
     private store: Store<AppState>,
   ) { }
 
-  parseQueryOfSearchFromGlobalAndSearch(q: string, byIsbn: boolean = false): Observable<Array<Book>> {
-    return this.searchFromGlobal(q, byIsbn).pipe(map(res => {
+  parseQueryOfSearchFromGlobalAndSearch(q: string, byIsbn: boolean = false, byAuthor: boolean = false): Observable<Array<Book>> {
+    return this.searchFromGlobal(q, byIsbn, byAuthor).pipe(map(res => {
       if (res.count > searchBoundaryValue) {
         throwError('Hits over search Boundary Value.');
       }
       return res.books.sort((a, b) => a.title > b.title ? 1 : -1);
     }));
   }
-  searchFromGlobal(q: string, byIsbn: boolean): Observable<ParsedBookApiResponse> {
+  searchFromGlobal(q: string, byIsbn: boolean, byAuthor: boolean): Observable<ParsedBookApiResponse> {
     const params = {
       format: 'json',
       applicationId,
       affiliateId,
-      ...(byIsbn ? {} : {title: q}),
-      // author: 'アクタージュ',
+      ...(byIsbn || byAuthor ? {} : {title: q}),
+      ...(byAuthor && !byIsbn ? {author: q} : {}),
       ...(byIsbn ? {isbn: q} : {}),
       outOfStockFlag: '1',
     };
@@ -62,20 +63,43 @@ export class BookService {
       map((books: Array<Book>) => books.filter(book => book.title.includes(q) || book.author.includes(q)))
     );
   }
-  initBooks() {
-    this.parseQueryOfSearchFromGlobalAndSearch('アクタージュ').pipe(
-      map(books => {
-        this.store.dispatch(
-          setBooks({
-            books: books
-              .slice(0, 12)
-              .map(book => {
-                book.id = book.isbn;
-                return book;
-              })
-          }));
-      }),
-      take(1)
-    ).subscribe();
+  async initBooks() {
+    return await this.parseQueryOfSearchFromGlobalAndSearch('アクタージュ').pipe(
+      map(async searchedBooks => {
+        const books = searchedBooks
+          .slice(0, 2)
+          .map(book => {
+            book.id = book.isbn;
+            return book;
+          });
+        await this.store.dispatch(setBooks({ books }));
+      })
+    ).toPromise().then(async _ => {
+      await this.parseQueryOfSearchFromGlobalAndSearch('コンダクター').pipe(
+        map(async searchedBooks => {
+          const book = searchedBooks[1];
+          book.id = book.isbn;
+          await this.store.dispatch(setBook({ book }));
+        })
+      ).toPromise();
+    });
+  }
+  recommendBook(): Observable<Book> {
+    if (this.enableRecommendBooks$.value) {
+      const isbnHasBooks = [];
+      return this.store.pipe(
+        select(selectBooks),
+        map((books: Array<Book>) => {
+          books.map(book => isbnHasBooks.push(book.isbn));
+          return books.length ? books[Math.floor(Math.random() * books.length)].author : '神永学';
+        }),
+        mergeMap((q: string) => {
+          return this.parseQueryOfSearchFromGlobalAndSearch(q.split('/')[0], false, true);
+        }),
+        map((books: Array<Book>) => {
+          return books.filter(book => !isbnHasBooks.includes(book.isbn))[0];
+        })
+      );
+    }
   }
 }

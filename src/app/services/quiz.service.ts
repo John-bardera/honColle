@@ -23,12 +23,12 @@ export class QuizService {
   initQuizzes() {
     QUIZZES.map(quiz => {
       this.bookService.parseQueryOfSearchFromGlobalAndSearch(quiz.book.isbn, true)
-        .subscribe(book => {
+        .subscribe(async book => {
           if (book.length) {
             quiz.book = book[0];
             quiz.book.id = quiz.book.isbn;
-            this.store.dispatch(setBook({ book: quiz.book }));
-            this.store.dispatch(setQuiz({ quiz }));
+            await this.store.dispatch(setBook({ book: quiz.book }));
+            await this.store.dispatch(setQuiz({ quiz }));
           }
         });
     });

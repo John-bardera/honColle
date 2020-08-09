@@ -3,7 +3,7 @@
     <ion-thumbnail class="thumbnail">
       <img [src]="book.mediumImageUrl">
     </ion-thumbnail>
-    <div class="text-wrapper">
+    <div class="text-wrapper" [class.has-no-buttons]="isSearch || hasNotButtons">
       <div class="title">
         {{ book.title }}
       </div>
