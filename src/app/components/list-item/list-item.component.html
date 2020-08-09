@@ -32,26 +32,26 @@
       <ng-container *ngIf="!isSearch">
         <ng-container *ngIf="book.isRead; else IsNotRead">
           <ion-buttons class="buttons">
-            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('searchQuiz')">クイズにチャレンジ</ion-button>
-            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('createQuiz')">クイズを作成</ion-button>
+            <ion-button size="small" fill="solid" shape="round" color="danger" (click)="sendClicked('searchQuiz')">クイズにチャレンジ</ion-button>
+            <ion-button size="small" fill="solid" shape="round" color="danger" (click)="sendClicked('createQuiz')">クイズを作成</ion-button>
           </ion-buttons>
         </ng-container>
         <ng-template #IsNotRead>
           <ion-buttons class="buttons">
-            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('setRead')">既読登録</ion-button>
+            <ion-button size="small" fill="solid" shape="round" color="danger" (click)="sendClicked('setRead')">既読登録</ion-button>
           </ion-buttons>
         </ng-template>
       </ng-container>
       <ng-container *ngIf="isSearch && is4Quiz">
         <ion-buttons class="buttons">
-          <ion-button size="small" fill="outline" shape="round" (click)="sendClicked('createQuiz')">作成する</ion-button>
+          <ion-button size="small" fill="outline" shape="round" color="primary" (click)="sendClicked('createQuiz')">作成する</ion-button>
         </ion-buttons>
       </ng-container>
     </ng-container>
     <ng-template #IsQuizAtButtons>
       <ion-buttons class="buttons">
         <ion-button *ngIf="quiz.comments.length" size="small" fill="solid" shape="round" (click)="sendClicked('readComments')"><ion-icon name="chatbubble-ellipses"></ion-icon></ion-button>
-        <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('challengeQuiz')">挑戦する</ion-button>
+        <ion-button size="small" fill="solid" shape="round" color="warning" (click)="sendClicked('challengeQuiz')">挑戦する</ion-button>
       </ion-buttons>
     </ng-template>
   </ng-container>
