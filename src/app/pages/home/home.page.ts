@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { ClickedButtonParams } from '@/components/list-item/list-item.component';
 import { Book } from '@/models';
 import { BookService, InitService } from '@/services';
 import { AppState } from '@/store';
-import {selectBooks, setBook} from '@/store/book.store';
-import {ClickedButtonParams} from '@/components/list-item/list-item.component';
+import { selectBooks, setBook } from '@/store/book.store';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,7 @@ export class HomePage {
   }
   clickedButton(ev: ClickedButtonParams) {
     if (ev.message === 'setRead') {
-      this.store.dispatch(setBook({ book: {...ev.content, isRead: true} }));
+      this.store.dispatch(setBook({ book: {...(ev.content as Book), isRead: true} }));
     } else if (ev.message === 'searchQuiz') {
       console.log('');
     } else if (ev.message === 'creatQuiz') {
