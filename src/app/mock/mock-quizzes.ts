@@ -19,7 +19,23 @@ export const QUIZZES: Array<Quiz> = [
     comments: [],
     book: {
       id: '4054064019',
-      isbn: '4054064019'
+      isbn: '4054064019',
+      affiliateUrl: '',
+      author: '',
+      authorKana: '',
+      itemCaption: '',
+      itemUrl: '',
+      largeImageUrl: '',
+      limitedFlag: 0,
+      mediumImageUrl: '',
+      publisherName: '',
+      seriesName: '',
+      seriesNameKana: '',
+      size: '',
+      smallImageUrl: '',
+      title: '',
+      titleKana: '',
+      isRead: false,
     }
   },
   /*{
