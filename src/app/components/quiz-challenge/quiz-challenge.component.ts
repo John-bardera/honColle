@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Quiz} from '@/models';
+import {ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-quiz-challenge',
@@ -6,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quiz-challenge.component.scss'],
 })
 export class QuizChallengeComponent implements OnInit {
+  @Input() quiz: Quiz;
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController,
+  ) { }
 
   ngOnInit() {}
 
+  dismiss() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalCtrl.dismiss({
+      dismissed: true
+    });
+  }
 }

@@ -2,9 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Book, Quiz } from '@/models';
 
+export type MessageType = 'searchQuiz' | 'creatQuiz' | 'setRead' | 'createQuiz' | 'readComments' | 'challengeQuiz';
+
 export interface ClickedButtonParams {
-  message: string;
-  content: Book;
+  message: MessageType;
+  content: Book | Quiz;
 }
 @Component({
   selector: 'app-list-item',
@@ -17,7 +19,7 @@ export class ListItemComponent implements OnInit {
   @Input() isSearch = false;
   @Input() is4Quiz = false;
   @Input() hasNotButtons = false;
-  @Output() clicked = new EventEmitter<Book>();
+  @Output() clicked = new EventEmitter<Book | Quiz>();
   @Output() clickedButton = new EventEmitter<ClickedButtonParams>();
 
   isBook: boolean;
@@ -28,12 +30,12 @@ export class ListItemComponent implements OnInit {
   }
 
   click() {
-    this.clicked.emit(this.book);
+    this.clicked.emit(this.isBook ? this.book : this.quiz);
   }
-  sendClicked(message: string) {
+  sendClicked(message: MessageType) {
     const params: ClickedButtonParams = {
       message,
-      content: this.book,
+      content: this.isBook ? this.book : this.quiz,
     };
     this.clickedButton.emit(params);
   }

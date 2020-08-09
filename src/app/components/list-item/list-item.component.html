@@ -32,7 +32,7 @@
       <ng-container *ngIf="!isSearch">
         <ng-container *ngIf="book.isRead; else IsNotRead">
           <ion-buttons class="buttons">
-            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('challengeQuiz')">クイズにチャレンジ</ion-button>
+            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('searchQuiz')">クイズにチャレンジ</ion-button>
             <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('createQuiz')">クイズを作成</ion-button>
           </ion-buttons>
         </ng-container>

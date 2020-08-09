@@ -25,9 +25,9 @@ export class QuizService {
       this.bookService.parseQueryOfSearchFromGlobalAndSearch(quiz.book.isbn, true)
         .subscribe(book => {
           if (book.length) {
-            this.store.dispatch(setBook({ book: { ...book[0], id: book[0].isbn } }));
             quiz.book = book[0];
             quiz.book.id = quiz.book.isbn;
+            this.store.dispatch(setBook({ book: quiz.book }));
             this.store.dispatch(setQuiz({ quiz }));
           }
         });
