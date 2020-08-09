@@ -1,0 +1,117 @@
+<!--<ion-content padding *ngIf="selectedtab == 'challenge' && selectedQ == '1'">
+  <h3>{{quiz.title}}</h3>
+  <p>本：　著：</p>
+  <p>作成者：{{quiz.maker}}</p>
+  <h4>全2問</h4>
+
+  <h2>{{quiz.Q}}</h2>
+  <ion-button button (click)="selectbutton(1)" class="block" color="light">{{quiz.choices[0]}}</ion-button>
+  <ion-button button (click)="selectbutton(2)" class="block" color="light">{{quiz.choices[1]}}</ion-button>
+  <ion-button button (click)="selectbutton(3)" class="block" color="light">{{quiz.choices[2]}}</ion-button>
+
+  <ion-button class="bottom-right" fill="clear" button (click)="onNext('2')">次の問題へ→</ion-button>
+</ion-content>
+
+<ion-content padding *ngIf="selectedtab === 'challenge' && selectedQ === '2'">
+  <h3>{{quiz.title}}</h3>
+  <p>本：　著：</p>
+  <p>作成者：{{quiz.maker}}</p>
+  <h4>全2問</h4>
+
+  <h2>2.〇△□×？</h2>
+  <ion-button button (click)="onNext('anser')" class="block" color="light">メソッド演技法</ion-button>
+  <ion-button button (click)="onNext('anser')" class="block" color="light">パクパク演技法</ion-button>
+  <ion-button button (click)="onNext('anser')" class="block" color="light">もぐもぐ演技法</ion-button>
+
+  <ion-button class="bottom-right" fill="clear" button (click)="onNext('anser')">結果を見る→</ion-button>
+</ion-content>
+
+<ion-content padding *ngIf="selectedtab === 'challenge' && selectedQ === 'anser'">
+  <h3>アクタージュクイズ</h3>
+  <p>本：　著：</p>
+  <p>作成者：{{quiz.maker}}</p>
+  <h4>全2問</h4>
+
+  <h2 id = "anser">正答</h2>
+  <div class = "anser">
+    <h3>1.本作の主人公である夜凪景が身に着けていた演技法は？</h3>
+    <p>あなたの答え: {{quiz.choices[selectednum-1]}}</p>
+    <p class="correct">正解：{{quiz.choices[quiz.correct-1]}}</p>
+
+    <h3>2.〇△□×？</h3>
+    <p>あなたの答え：〇</p>
+    <p class="wrong">正解：△</p>
+  </div>
+
+  <ion-button class="bottom-right" fill="clear" button (click)="onNext('review')">レビュー→</ion-button>
+</ion-content>
+
+<ion-content *ngIf="selectedtab === 'challenge' && selectedQ === 'review'">
+  <ion-item>
+    <ion-label>
+      <h3>{{quiz.title}}</h3>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="../../../../resources/act.jpg">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>???1巻</h2>
+      <div class="quizmaker">
+        <p>著　</p>
+        <p class="ion-text-lowercase">クイズ作成者　{{quiz.maker}}　さん</p>
+      </div>
+    </ion-label>
+  </ion-item>
+
+  <h1 class="ion-text-uppercase" id="seitousu"><b>{{matchChoices()}}問正解！</b></h1>
+  <div class="box">
+    <p class="box-item">このクイズの評価をお願いします</p>
+    <div class="box-item">
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
+
+      <p>コメント</p>
+      <input [(ngModel)]="comment.maker" type="text" placeholder="名前" size="20" maxlength="15">
+      <br>
+      <textarea [(ngModel)]="comment.content" placeholder="コメント" rows="10" cols="50"></textarea>
+      <br>
+      <ion-button button (click)="addComment(comment)" fill="outline" size="default" mode="ios">レビューする</ion-button>
+      <br>
+      <ion-button button (click)="onNext('list')" color="medium" fill="outline" size="small" mode="ios">レビューせずに閉じる</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="selectedtab == 'challenge' && selectedQ == 'list'">
+  <ion-item>
+    <ion-label>
+      <div id="quizdetail">
+        <p class="ion-text-uppercase" id="title">アクタージュクイズ</p>
+        <p>本：アクタージュ　著：マツキタクヤ</p>
+        <p>作成者：apple</p>
+        <p>全３問</p>
+      </div>
+      <ion-icon name="chatbox"></ion-icon>
+      <p style="text-align: center;">このクイズのコメント</p>
+    </ion-label>
+  </ion-item>
+  <ion-item *ngFor="let comment of comments">
+    <ion-list>
+      {{comment.maker}}
+      <div class="right">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <p>{{comment.content}}</p>
+    </ion-list>
+  </ion-item>
+</ion-content>
+-->

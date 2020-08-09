@@ -1,7 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Book } from '@/models';
+import { Book, Quiz } from '@/models';
 
+export type MessageType = 'searchQuiz' | 'creatQuiz' | 'setRead' | 'createQuiz' | 'readComments' | 'challengeQuiz';
+
+export interface ClickedButtonParams {
+  message: MessageType;
+  content: Book | Quiz;
+}
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
@@ -9,14 +15,39 @@ import { Book } from '@/models';
 })
 export class ListItemComponent implements OnInit {
   @Input() book: Book;
+  @Input() quiz: Quiz;
   @Input() isSearch = false;
-  @Output() clicked = new EventEmitter<Book>();
+  @Input() is4Quiz = false;
+  @Input() hasNotButtons = false;
+  @Output() clicked = new EventEmitter<Book | Quiz>();
+  @Output() clickedButton = new EventEmitter<ClickedButtonParams>();
 
-  constructor() { }
+  isBook: boolean;
+  constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isBook = this.book && !!this.book.id;
+  }
 
   click() {
-    this.clicked.emit(this.book);
+    this.clicked.emit(this.isBook ? this.book : this.quiz);
+  }
+  sendClicked(message: MessageType) {
+    const params: ClickedButtonParams = {
+      message,
+      content: this.isBook ? this.book : this.quiz,
+    };
+    this.clickedButton.emit(params);
+  }
+  getQuizStar(): number {
+    let star = 0;
+    if (this.quiz.comments.length) {
+      this.quiz.comments.map(comment => star += comment.star);
+      star = Math.round(star / this.quiz.comments.length);
+    }
+    return star;
+  }
+  convert2ArrayFromNumber(x: number) {
+    return Array(x).keys();
   }
 }

@@ -1,0 +1,42 @@
+<ion-content>
+  <ion-item>
+    <ion-label>
+      <p class="quiz-search">クイズを探す</p>
+      <ion-searchbar
+        class="searchbar"
+        color="favorite"
+        mode="ios"
+        enterkeyhint="search"
+        showCancelButton="never"
+        placeholder="入力してください"
+        inputmode="search"
+        (ionChange)="searchQuizzes($event)">
+      </ion-searchbar>
+      <p>検索結果</p>
+    </ion-label>
+  </ion-item>
+  <ng-container *ngIf="searchedQuizzes$ | async as quizzes">
+    <app-list-item
+      *ngFor="let quiz of quizzes"
+      [quiz]="quiz"
+      (clickedButton)="clickedButtons($event)"
+    ></app-list-item>
+  </ng-container>
+  <!--<ion-list>
+    <ion-item *ngFor="let quiz of quizzes">
+      <ion-thumbnail slot="start">
+        <img src="../../../../resources/act.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{quiz.title}}</h2>
+        <div class="quizmaker">
+          <p>著　</p>
+          <p class="ion-text-lowercase">作成者　{{quiz.maker}}　さん</p>
+          <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon>
+        </div>
+      </ion-label>
+      <ion-icon name="chatbubbles" float-right></ion-icon>
+      <ion-button button (click)="onNext('1')" class="challengebutton" color="danger" size="default" fill="outline">挑戦する</ion-button>
+    </ion-item>
+  </ion-list>-->
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-item id="label">
+    <ion-label>
+      人気のクイズ
+    </ion-label>
+  </ion-item>
+  <ng-container *ngIf="quizzes$ | async as quizzes">
+    <app-list-item
+      *ngFor="let quiz of quizzes"
+      [quiz]="quiz"
+    ></app-list-item>
+  </ng-container>
+  <!--
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src="../../../../resources/act.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>メイドインアビスのクイズ</h2>
+        <div class="quizmaker">
+          <p>著　つくしあきひと</p>
+          <p class="ion-text-lowercase">さとし　さん</p>
+          <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon>
+        </div>
+      </ion-label>
+      <ion-button color="danger" size="large" fill="outline">挑戦する</ion-button>
+    </ion-item>
+  </ion-list>
+  -->
+</ion-content>

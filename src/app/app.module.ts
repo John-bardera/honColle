@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -15,11 +16,16 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { ServicesModule } from './services/services.module';
 import { reducers } from './store';
+import {QuizChallengeComponent} from '@/components/quiz-challenge/quiz-challenge.component';
+import {QuizCreateComponent} from '@/components/quiz-create/quiz-create.component';
 
 @NgModule({
   declarations: [AppComponent],
   // Modalとかはここに追加しないといけない
-  entryComponents: [],
+  entryComponents: [
+    QuizChallengeComponent,
+    QuizCreateComponent,
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -29,6 +35,7 @@ import { reducers } from './store';
     StoreModule.forRoot(reducers),
     ServicesModule,
     ComponentsModule,
+    FormsModule,
   ],
   providers: [
     StatusBar,

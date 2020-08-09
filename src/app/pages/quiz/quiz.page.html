@@ -1,14 +1,26 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      quiz
+      クイズ
     </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="top" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="top">
+        <b>トップ</b>
+      </ion-segment-button>
+      <ion-segment-button value="challenge">
+        <b>チャレンジ</b>
+      </ion-segment-button>
+      <ion-segment-button value="create">
+        <b>作成</b>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <app-quiz-top *ngIf="segment === 'top'"></app-quiz-top>
+  <app-quiz-search *ngIf="segment === 'challenge'"></app-quiz-search>
+  <app-quiz-create-search *ngIf="segment === 'create'"></app-quiz-create-search>
 </ion-content>

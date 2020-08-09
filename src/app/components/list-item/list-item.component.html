@@ -1,25 +1,57 @@
 <ion-item tappable (click)="click()" class="list-item" lines="full">
-  <ion-thumbnail class="thumbnail">
-    <img [src]="book.mediumImageUrl">
-  </ion-thumbnail>
-  <div class="text-wrapper">
-    <div class="title">
-      {{ book.title }}
+  <ng-container *ngIf="isBook; else IsQuiz">
+    <ion-thumbnail class="thumbnail">
+      <img [src]="book.mediumImageUrl">
+    </ion-thumbnail>
+    <div class="text-wrapper">
+      <div class="title">
+        {{ book.title }}
+      </div>
+      <div class="author">
+        {{ book.author }}
+      </div>
     </div>
-    <div class="author">
-      {{ book.author }}
+  </ng-container>
+  <ng-template #IsQuiz>
+    <ion-thumbnail class="thumbnail">
+      <img [src]="quiz.book.mediumImageUrl">
+    </ion-thumbnail>
+    <div class="text-wrapper">
+      <div class="title">
+        {{ quiz.title }}
+      </div>
+      <div class="author">
+        {{ quiz.maker }}
+      </div>
+      <ion-icon *ngFor="let i of convert2ArrayFromNumber(getQuizStar())" name="star"></ion-icon>
+      <ion-icon *ngFor="let i of convert2ArrayFromNumber(5 - getQuizStar())" name="star-outline"></ion-icon>
     </div>
-  </div>
-  <ng-container *ngIf="!isSearch">
-    <ng-container *ngIf="book.isRead; else IsNotRead">
-      <ion-buttons class="buttons">
-        <ion-button size="small" fill="solid" shape="round">クイズにチャレンジ</ion-button>
-        <ion-button size="small" fill="solid" shape="round">クイズを作成</ion-button>
-      </ion-buttons>
+  </ng-template>
+  <ng-container *ngIf="!hasNotButtons">
+    <ng-container *ngIf="isBook; else IsQuizAtButtons">
+      <ng-container *ngIf="!isSearch">
+        <ng-container *ngIf="book.isRead; else IsNotRead">
+          <ion-buttons class="buttons">
+            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('searchQuiz')">クイズにチャレンジ</ion-button>
+            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('createQuiz')">クイズを作成</ion-button>
+          </ion-buttons>
+        </ng-container>
+        <ng-template #IsNotRead>
+          <ion-buttons class="buttons">
+            <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('setRead')">既読登録</ion-button>
+          </ion-buttons>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngIf="isSearch && is4Quiz">
+        <ion-buttons class="buttons">
+          <ion-button size="small" fill="outline" shape="round" (click)="sendClicked('createQuiz')">作成する</ion-button>
+        </ion-buttons>
+      </ng-container>
     </ng-container>
-    <ng-template #IsNotRead>
+    <ng-template #IsQuizAtButtons>
       <ion-buttons class="buttons">
-        <ion-button size="small" fill="solid" shape="round">既読登録</ion-button>
+        <ion-button *ngIf="quiz.comments.length" size="small" fill="solid" shape="round" (click)="sendClicked('readComments')"><ion-icon name="chatbubble-ellipses"></ion-icon></ion-button>
+        <ion-button size="small" fill="solid" shape="round" (click)="sendClicked('challengeQuiz')">挑戦する</ion-button>
       </ion-buttons>
     </ng-template>
   </ng-container>
