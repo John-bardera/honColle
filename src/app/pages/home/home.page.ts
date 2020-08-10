@@ -39,7 +39,7 @@ export class HomePage {
   }
   async clickedButton(ev: ClickedButtonParams) {
     if (ev.message === 'setRead') {
-      this.store.dispatch(setBook({ book: {...(ev.content as Book), isRead: true} }));
+      this.store.dispatch(setBook({ book: {...ev.content, isRead: true} }));
     } else if (ev.message === 'searchQuiz') {
       this.quizService.selectedBooksIsbn$.next((ev.content as Book).isbn);
       this.quizService.hasInitSegment$.next(true);
