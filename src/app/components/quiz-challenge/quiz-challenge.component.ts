@@ -10,12 +10,16 @@ import { Quiz } from '@/models';
 })
 export class QuizChallengeComponent implements OnInit {
   @Input() quiz: Quiz;
+  displayedQuestionIndex = 0;
+  answers: Array<number>;
 
   constructor(
     private modalCtrl: ModalController,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.answers = new Array<number>(this.quiz.questions.length).map(x => -1);
+  }
 
   dismiss() {
     // using the injected ModalController this page
@@ -23,5 +27,15 @@ export class QuizChallengeComponent implements OnInit {
     this.modalCtrl.dismiss({
       dismissed: true
     });
+  }
+  nextQuestionOrFinish() {
+    if (this.quiz.questions.length === (this.displayedQuestionIndex + 1)) {
+      this.displayedQuestionIndex = -1;
+    } else {
+      this.displayedQuestionIndex++;
+    }
+  }
+  selectedAnswer(index: 0 | 1 | 2) {
+    this.answers[this.displayedQuestionIndex] = index;
   }
 }

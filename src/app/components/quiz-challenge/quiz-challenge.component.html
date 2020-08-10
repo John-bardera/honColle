@@ -1,36 +1,46 @@
-<!--<ion-content padding *ngIf="selectedtab == 'challenge' && selectedQ == '1'">
-  <h3>{{quiz.title}}</h3>
-  <p>本：　著：</p>
-  <p>作成者：{{quiz.maker}}</p>
-  <h4>全2問</h4>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button name="close" (click)="dismiss()"></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding *ngIf="displayedQuestionIndex >= 0">
+  <h3>{{ quiz.title }}</h3>
+  <p>本: {{ quiz.book.author }}著</p>
+  <p>作成者: {{ quiz.maker }}</p>
+  <h4 class="question-info">{{ displayedQuestionIndex + 1 }}問目 / 全{{ quiz.questions.length }}問</h4>
 
-  <h2>{{quiz.Q}}</h2>
-  <ion-button button (click)="selectbutton(1)" class="block" color="light">{{quiz.choices[0]}}</ion-button>
-  <ion-button button (click)="selectbutton(2)" class="block" color="light">{{quiz.choices[1]}}</ion-button>
-  <ion-button button (click)="selectbutton(3)" class="block" color="light">{{quiz.choices[2]}}</ion-button>
+  <h2 class="text">{{ quiz.questions[displayedQuestionIndex].text }}</h2>
+  <ion-button
+    button
+    (click)="selectedAnswer(0)"
+    [fill]="answers[displayedQuestionIndex] === 0 ? 'solid' : 'outline'"
+    class="block"
+  >{{ quiz.questions[displayedQuestionIndex].choices[0] }}</ion-button>
+  <ion-button
+    button
+    (click)="selectedAnswer(1)"
+    [fill]="answers[displayedQuestionIndex] === 1 ? 'solid' : 'outline'"
+    class="block"
+  >{{ quiz.questions[displayedQuestionIndex].choices[1] }}</ion-button>
+  <ion-button
+    button
+    (click)="selectedAnswer(2)"
+    [fill]="answers[displayedQuestionIndex] === 2 ? 'solid' : 'outline'"
+    class="block"
+  >{{ quiz.questions[displayedQuestionIndex].choices[2] }}</ion-button>
 
-  <ion-button class="bottom-right" fill="clear" button (click)="onNext('2')">次の問題へ→</ion-button>
+  <ion-button class="bottom-right" fill="clear" button (click)="nextQuestionOrFinish()">
+    {{ (displayedQuestionIndex + 1) === quiz.questions.length ? '結果を見る' : '次の問題へ' }}
+  </ion-button>
 </ion-content>
-
-<ion-content padding *ngIf="selectedtab === 'challenge' && selectedQ === '2'">
-  <h3>{{quiz.title}}</h3>
-  <p>本：　著：</p>
-  <p>作成者：{{quiz.maker}}</p>
-  <h4>全2問</h4>
-
-  <h2>2.〇△□×？</h2>
-  <ion-button button (click)="onNext('anser')" class="block" color="light">メソッド演技法</ion-button>
-  <ion-button button (click)="onNext('anser')" class="block" color="light">パクパク演技法</ion-button>
-  <ion-button button (click)="onNext('anser')" class="block" color="light">もぐもぐ演技法</ion-button>
-
-  <ion-button class="bottom-right" fill="clear" button (click)="onNext('anser')">結果を見る→</ion-button>
-</ion-content>
-
-<ion-content padding *ngIf="selectedtab === 'challenge' && selectedQ === 'anser'">
-  <h3>アクタージュクイズ</h3>
-  <p>本：　著：</p>
-  <p>作成者：{{quiz.maker}}</p>
-  <h4>全2問</h4>
+<!--
+<ion-content padding *ngIf="displayedQuestionIndex === -1">
+  <h3>{{ quiz.title }}</h3>
+  <p>本: {{ quiz.book.author }}著</p>
+  <p>作成者: {{ quiz.maker }}</p>
+  <h4>全{{ quiz.questions.length }}問</h4>
 
   <h2 id = "anser">正答</h2>
   <div class = "anser">

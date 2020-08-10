@@ -37,7 +37,7 @@ export class QuizSearchPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: QuizChallengeComponent,
       componentProps: {
-        quiz: ev.content
+        quiz: ev.content as Quiz
       }
     });
     await modal.present();
