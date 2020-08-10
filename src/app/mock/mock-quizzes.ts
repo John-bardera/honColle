@@ -104,24 +104,156 @@ export const QUIZZES: Array<Quiz> = [
       isRead: false,
     }
   },
-  /*{
+  {
     id: '',
-    title: 'ごとうぶんの花嫁ノクイズ',
-    maker: 'フウタロー',
-    Q: '幼少期の上杉風太郎とあった五つ子はだれとだれ？',
-    choices: ['一花と四葉',
-      '四葉と五月',
-      '五月と三玖'],
-    correct: 1,
+    title: 'ワンピースのクイズ',
+    maker: '競馬オタク',
+    questions: [
+      {
+        text: 'ルフィが最初に仲間にしたのはだれ？',
+        choices: ['ゾロ',
+          'サンジ',
+          'ナミ'],
+        correct: 1,
+      },
+      {
+        text: 'チョッパーが食べた悪魔の実は？',
+        choices: ['モフモフの実',
+          'ヒトヒトの実',
+          'ツノツノの身'],
+        correct: 2,
+      }
+    ],
+    comments: [
+      {
+        maker: '朝昼晩',
+        star: 2,
+        content: '簡単すぎる'
+      }
+    ],
+    book: {
+      id: '9784088702179',
+      isbn: '9784088702179',
+      affiliateUrl: '',
+      author: '',
+      authorKana: '',
+      itemCaption: '',
+      itemUrl: '',
+      largeImageUrl: '',
+      limitedFlag: 0,
+      mediumImageUrl: '',
+      publisherName: '',
+      seriesName: '',
+      seriesNameKana: '',
+      size: '',
+      smallImageUrl: '',
+      title: '',
+      titleKana: '',
+      isRead: false,
+    }
   },
   {
     id: '',
-    title: 'ご注文はうさぎですか？の問題',
-    maker: 'おにぎり',
-    Q: 'ティッピーの品種は？',
-    choices: ['ネザーランドドワーフ',
-      'レッキス',
-      'アンゴラウサギ'],
-    correct: 3,
-  },*/
+    title: '五等分の花嫁のクイズ',
+    maker: '競馬オタク',
+    questions: [
+      {
+        text: '幼少期の上杉風太郎と出会ったのは5つ子の誰と誰？',
+        choices: ['一花と四葉',
+          '三玖と四葉',
+          '四葉と五月'],
+        correct: 1,
+      },
+      {
+        text: '文化祭で三玖が担当した屋台は？',
+        choices: ['からあげ',
+          'たこやき',
+          'パンケーキ'],
+        correct: 2,
+      },
+      {
+        text: '上杉風太郎が学食でよく頼むメニューは？',
+        choices: ['唐揚げ定食唐揚げ抜き',
+          'かき揚げ定食かき揚げ抜き',
+          '焼肉定食焼肉抜き'],
+        correct: 3,
+      }
+    ],
+    comments: [],
+    book: {
+      id: '9784065102497',
+      isbn: '9784065102497',
+      affiliateUrl: '',
+      author: '',
+      authorKana: '',
+      itemCaption: '',
+      itemUrl: '',
+      largeImageUrl: '',
+      limitedFlag: 0,
+      mediumImageUrl: '',
+      publisherName: '',
+      seriesName: '',
+      seriesNameKana: '',
+      size: '',
+      smallImageUrl: '',
+      title: '',
+      titleKana: '',
+      isRead: false,
+    }
+  },
+  {
+    id: '',
+    title: 'メイドインアビスのクイズ',
+    maker: '競馬オタク',
+    questions: [
+      {
+        text: '殲滅卿のライザが使っていたブリーズリーブの漢字表記は？',
+        choices: ['無尽槌',
+          '無限槌',
+          '殲滅槌'],
+        correct: 1,
+      },
+      {
+        text: '白笛の原料である遺物は？',
+        choices: ['ファーカレス',
+          'スパラグモス',
+          'ユーアワース'],
+        correct: 3,
+      },
+      {
+        text: '深海4層の上昇負荷は？',
+        choices: ['全身の穴という穴から流血',
+          '平衡感覚の異常　幻覚　幻聴',
+          '全感覚の喪失　意識混濁　自傷行為'],
+        correct: 1,
+      }
+    ],
+    comments: [
+      {
+        maker: '朝昼晩',
+        star: 5,
+        content: 'いい問題だ'
+      }
+    ],
+    book: {
+      id: '9784812483800',
+      isbn: '9784812483800',
+      affiliateUrl: '',
+      author: '',
+      authorKana: '',
+      itemCaption: '',
+      itemUrl: '',
+      largeImageUrl: '',
+      limitedFlag: 0,
+      mediumImageUrl: '',
+      publisherName: '',
+      seriesName: '',
+      seriesNameKana: '',
+      size: '',
+      smallImageUrl: '',
+      title: '',
+      titleKana: '',
+      isRead: false,
+    }
+  },
 ];

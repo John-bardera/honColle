@@ -76,6 +76,7 @@ export class BookService {
         await this.store.dispatch(setBooks({ books }));
       })
     ).toPromise().then(async _ => {
+      await new Promise(resolve => setTimeout(resolve, 2000));
       await this.parseQueryOfSearchFromGlobalAndSearch('コンダクター').pipe(
         map(async searchedBooks => {
           const book = searchedBooks[1];

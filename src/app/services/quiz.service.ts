@@ -23,7 +23,8 @@ export class QuizService {
   ) { }
 
   initQuizzes() {
-    QUIZZES.map(quiz => {
+    QUIZZES.map(async quiz => {
+      await new Promise(resolve => setTimeout(resolve, 2000));
       this.bookService.parseQueryOfSearchFromGlobalAndSearch(quiz.book.isbn, true)
         .subscribe(async book => {
           if (book.length) {
