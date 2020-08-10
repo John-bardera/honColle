@@ -1,3 +1,17 @@
+# 使用方法
+npm -g install npx ionic cordova
+npm ci
+npm run start
+
+# 動作環境
+node v12.16.1
+npm v6.14.7
+
+Ionic:
+   Ionic CLI : 6.6.0
+
+Utility:
+   native-run (update available: 1.0.0) : 0.3.0
 # フォルダについて
 src/ - アプリ本体
 
@@ -26,4 +40,4 @@ src/app/pages/home/ - 本棚機能のページ
 src/app/pages/quiz/ - クイズ機能のページ
 src/app/pages/search/ - 検索機能のページ
 src/app/pages/settings/ - 設定機能のページ
-src/app/pages/tabs/ - footerのtabボタン用のページ＼
+src/app/pages/tabs/ - footerのtabボタン用ページ
