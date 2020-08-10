@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ClickedButtonParams } from '@/components/list-item/list-item.component';
 import { QuizCreateComponent } from '@/components/quiz-create/quiz-create.component';
@@ -23,14 +24,18 @@ export class QuizCreateSearchPage implements OnInit {
     private store: Store<AppState>,
     private bookService: BookService,
   ) {
-    this.searchedBooks$ =　this.store.pipe(select(selectBooks));
+    this.searchedBooks$ =　this.store.pipe(select(selectBooks)).pipe(
+      map(books => books.filter(book => book.isRead))
+    );
   }
 
   ngOnInit() {
   }
   async searchBooks(ev: any) {
     const value = ev.target.value; // イベントを発生させたオブジェクトのvalueつまり入力した文字
-    this.searchedBooks$ = value ? this.bookService.searchFromLocalStore(value) : this.store.pipe(select(selectBooks));
+    this.searchedBooks$ = (value ? this.bookService.searchFromLocalStore(value) : this.store.pipe(select(selectBooks))).pipe(
+      map(books => books.filter(book => book.isRead))
+    );
   }
   async clickedButtons(ev: ClickedButtonParams) {
     const modal = await this.modalCtrl.create({

@@ -14,11 +14,18 @@
       <p>検索結果</p>
     </ion-label>
   </ion-item>
-  <app-list-item
-    *ngFor="let book of searchedBooks$ | async"
-    [book]="book"
-    [isSearch]="true"
-    [is4Quiz]="true"
-    (clickedButton)="clickedButtons($event)"
-  ></app-list-item>
+  <ng-container *ngIf="searchedBooks$ | async as searchedBooks;">
+    <ng-container *ngIf="searchedBooks.length; else Empty">
+      <app-list-item
+        *ngFor="let book of searchedBooks"
+        [book]="book"
+        [isSearch]="true"
+        [is4Quiz]="true"
+        (clickedButton)="clickedButtons($event)"
+      ></app-list-item>
+    </ng-container>
+    <ng-template #Empty>
+      <app-empty-state>本が見つかりませんでした<br>既に読んだ本だけがクイズを作成することができます</app-empty-state>
+    </ng-template>
+  </ng-container>
 </ion-content>
