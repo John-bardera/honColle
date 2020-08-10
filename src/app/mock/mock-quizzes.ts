@@ -114,14 +114,14 @@ export const QUIZZES: Array<Quiz> = [
         choices: ['ゾロ',
           'サンジ',
           'ナミ'],
-        correct: 1,
+        correct: 0,
       },
       {
         text: 'チョッパーが食べた悪魔の実は？',
         choices: ['モフモフの実',
           'ヒトヒトの実',
           'ツノツノの身'],
-        correct: 2,
+        correct: 1,
       }
     ],
     comments: [
@@ -162,21 +162,21 @@ export const QUIZZES: Array<Quiz> = [
         choices: ['一花と四葉',
           '三玖と四葉',
           '四葉と五月'],
-        correct: 1,
+        correct: 0,
       },
       {
         text: '文化祭で三玖が担当した屋台は？',
         choices: ['からあげ',
           'たこやき',
           'パンケーキ'],
-        correct: 2,
+        correct: 1,
       },
       {
         text: '上杉風太郎が学食でよく頼むメニューは？',
         choices: ['唐揚げ定食唐揚げ抜き',
           'かき揚げ定食かき揚げ抜き',
           '焼肉定食焼肉抜き'],
-        correct: 3,
+        correct: 2,
       }
     ],
     comments: [],
@@ -211,21 +211,21 @@ export const QUIZZES: Array<Quiz> = [
         choices: ['無尽槌',
           '無限槌',
           '殲滅槌'],
-        correct: 1,
+        correct: 0,
       },
       {
         text: '白笛の原料である遺物は？',
         choices: ['ファーカレス',
           'スパラグモス',
           'ユーアワース'],
-        correct: 3,
+        correct: 2,
       },
       {
         text: '深海4層の上昇負荷は？',
         choices: ['全身の穴という穴から流血',
           '平衡感覚の異常　幻覚　幻聴',
           '全感覚の喪失　意識混濁　自傷行為'],
-        correct: 1,
+        correct: 0,
       }
     ],
     comments: [
