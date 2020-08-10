@@ -51,6 +51,59 @@ export const QUIZZES: Array<Quiz> = [
       isRead: false,
     }
   },
+  {
+    id: '',
+    title: 'Angularクイズ',
+    maker: 'John Doe',
+    questions: [
+      {
+        text: '「npm」。黒木はなんて読む？',
+        choices: ['なぷむ',
+          'えぬぴーえむ',
+          'なぱーむ'],
+        correct: 2,
+      },
+      {
+        text: 'Angularのロゴのメインの色は何色？',
+        choices: ['赤',
+          '青',
+          '緑'],
+        correct: 0,
+      }
+    ],
+    comments: [
+      {
+        maker: 'John',
+        star: 5,
+        content: 'Angular何もわからん'
+      },
+      {
+        maker: '井の中の蛙',
+        star: 5,
+        content: 'Angular完全に理解した'
+      }
+    ],
+    book: {
+      id: '9784774191300',
+      isbn: '9784774191300',
+      affiliateUrl: '',
+      author: '',
+      authorKana: '',
+      itemCaption: '',
+      itemUrl: '',
+      largeImageUrl: '',
+      limitedFlag: 0,
+      mediumImageUrl: '',
+      publisherName: '',
+      seriesName: '',
+      seriesNameKana: '',
+      size: '',
+      smallImageUrl: '',
+      title: '',
+      titleKana: '',
+      isRead: false,
+    }
+  },
   /*{
     id: '',
     title: 'ごとうぶんの花嫁ノクイズ',

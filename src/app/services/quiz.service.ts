@@ -29,6 +29,7 @@ export class QuizService {
           if (book.length) {
             quiz.book = book[0];
             quiz.book.id = quiz.book.isbn;
+            quiz.id = quiz.maker + Math.round( Math.random() * 10000000 );
             await this.store.dispatch(setBook({ book: quiz.book }));
             await this.store.dispatch(setQuiz({ quiz }));
           }
