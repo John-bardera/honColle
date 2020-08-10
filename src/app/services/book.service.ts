@@ -13,7 +13,8 @@ import { affiliateId, applicationId, enableRecommendBooks, searchBoundaryValue }
 @Injectable()
 export class BookService {
   url = 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404';
-  enableRecommendBooks$ = new BehaviorSubject(enableRecommendBooks);
+  enableRecommendBooks$ = new BehaviorSubject<boolean>(enableRecommendBooks);
+  selectedAuthor$ = new BehaviorSubject<string>('');
 
   constructor(
     private http: HttpClient,

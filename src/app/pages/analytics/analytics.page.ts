@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Book } from '@/models';
+import { BookService } from '@/services';
 import { AppState } from '@/store';
 import { selectBooks } from '@/store/book.store';
 
@@ -18,22 +18,26 @@ export class AnalyticsPage {
   constructor(
     private router: Router,
     private store: Store<AppState>,
+    private bookService: BookService,
   ) {
     this.author$ = this.store.pipe(
       select(selectBooks),
       map(books => {
         const author = [];
         books.map(book => {
-          if (!author.includes(book.author)) {
-            author.push(book.author);
-          }
+          book.author.split('/').map(a => {
+            if (!author.includes(a)) {
+              author.push(a);
+            }
+          });
         });
         return author;
       })
     );
   }
 
-  onChangePage() {
+  onChangePage(author: string) {
+    this.bookService.selectedAuthor$.next(author);
     this.router.navigateByUrl('tabs/analytics/graph');
   }
 }

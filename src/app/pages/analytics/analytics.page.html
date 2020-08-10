@@ -10,8 +10,8 @@
   <ng-container *ngIf="author$ | async as authors">
     <ng-container *ngIf="authors.length; else Empty">
       <ion-list>
-        <ion-item *ngFor="let author of authors" [button]="true" (click)="onChangePage()">
-          <ion-label>{{author}}</ion-label>
+        <ion-item *ngFor="let author of authors" [button]="true" (click)="onChangePage(author)">
+          <ion-label>{{ author }}</ion-label>
         </ion-item>
       </ion-list>
     </ng-container>

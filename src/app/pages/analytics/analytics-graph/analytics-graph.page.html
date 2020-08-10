@@ -1,10 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>analytics-graph</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/analytics"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ author }}のレポート</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <h3>マツキタクヤ</h3>
-  <canvas #MyChart width="400" height="400"></canvas>
+<ion-content [class.hidden]="isLoading">
+  <canvas #MyChart height="0.5"></canvas>
 </ion-content>
