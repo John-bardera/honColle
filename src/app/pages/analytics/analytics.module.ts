@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { AnalyticsDetailPage } from './analytics-detail/analytics-detail.page';
+
 import { AnalyticsPage } from './analytics.page';
 
 @NgModule({
@@ -21,8 +21,8 @@ import { AnalyticsPage } from './analytics.page';
             component: AnalyticsPage
           },
           {
-            path: ':id',
-            loadChildren: () => import('./analytics-detail/analytics-detail.module').then(m => m.AnalyticsDetailPageModule)
+            path: 'graph',
+            loadChildren: () => import('./analytics-graph/analytics-graph.module').then(m => m.AnalyticsGraphPageModule)
           }
         ]
       }
