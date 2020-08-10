@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import {BookService, PushService} from '@/services';
-import {Observable} from 'rxjs';
+import { BookService, PushService } from '@/services';
 
 @Component({
   selector: 'app-settings',

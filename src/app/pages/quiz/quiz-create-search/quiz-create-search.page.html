@@ -1,7 +1,7 @@
 <ion-content>
-  <ion-item>
+  <ion-item class="create-search-header" lines="none">
     <ion-label>
-      <p class="quiz-search">作成するクイズの作品・シリーズ・著者を選ぶ</p>
+      <p class="quiz-search">作成するクイズの作品を選ぶ</p>
       <ion-searchbar
         class="searchbar"
         color="favorite"
@@ -21,16 +21,4 @@
     [is4Quiz]="true"
     (clickedButton)="onMake('1')"
   ></app-list-item>
-  <!--<ion-item>
-    <ion-thumbnail slot="start">
-      <img src="../../../../resources/act.jpg">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>メイドインアビス1巻</h2>
-      <div class="quizmaker">
-        <p>著　つくしあきひと</p>
-      </div>
-    </ion-label>
-    <ion-button button (click) ="onMake('1')" class="challengebutton" color="danger" size="default" fill="outline">+作成する</ion-button>
-  </ion-item>-->
 </ion-content>
