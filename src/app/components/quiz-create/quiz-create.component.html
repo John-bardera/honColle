@@ -1,57 +1,76 @@
-<ion-content *ngIf="!creatingQuestion; else CreateQuestion">
-  <ion-list>
-    <ion-item>
-      <p>対象作品</p>
-    </ion-item>
-    <app-list-item
-      [book]="theme"
-      [hasNotButtons]="true"
-    ></app-list-item>
-    <ion-item>
-      <ion-label>
-        <p>クイズタイトル</p>
-        <input [(ngModel)]="quiz.title" type="text" name="quiztitle" size="30" maxlength="25">
-        <p>作成者</p>
-        <input [(ngModel)]="quiz.maker" type="text" name="quizmaker" size="30" maxlength="25">
-      </ion-label>
-    </ion-item>
-    <ion-item><p>問題</p></ion-item>
-    <ion-item *ngFor="let question of quiz.questions">
-      <ion-label>
-        <p>{{ question.text }}</p>
-        <p>1.{{ question.choices[0] }}</p>
-        <p>2.{{ question.choices[1] }}</p>
-        <p>3.{{ question.choices[2] }}</p>
-        <p>正解: {{ question.correct }}</p>
-        <ion-icon name="caret-down-outline"></ion-icon>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-button button (click)="touchQuestion()" fill="clear"><ion-icon slot="icon-only" name="add-circle-outline"></ion-icon></ion-button>
-      <p>問題を追加</p>
-    </ion-item>
-  </ion-list>
-  <div class="center">
-    <ion-button button (click)="createdQuiz()" size="default" fill="outline" mode="ios">公開する</ion-button>
-  </div>
-</ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="irregularDismiss()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content padding #CreateQuestion>
-  <div class="box">
-    <p>問題分</p>
-    <textarea [(ngModel)]="quiz.questions[selectedQuestionIndex].text" rows="10" cols="50"></textarea>
-    <br>
-    <p>選択肢</p>
-    <div padding>
-      1.<input [(ngModel)]="quiz.questions[selectedQuestionIndex].choices[0]" type="text" name="quiztitle" size="50" maxlength="45">
-      <br>
-      2.<input [(ngModel)]="quiz.questions[selectedQuestionIndex].choices[1]" class="margin-top" type="text" name="quiztitle" size="50" maxlength="45">
-      <br>
-      3.<input [(ngModel)]="quiz.questions[selectedQuestionIndex].choices[2]" class="margin-top" type="text" name="quiztitle" size="50" maxlength="45">
-      <br>
-      <p class="margin-top">正解の問題番号を選んでください</p>
-      <input [(ngModel)]="quiz.questions[selectedQuestionIndex].correct" type="number" name="quiztitle" min=1 max=3>
+<ng-container *ngIf="!creatingQuestion; else CreateQuestion">
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <p>対象作品</p>
+      </ion-item>
+      <app-list-item
+        [book]="theme"
+        [hasNotButtons]="true"
+      ></app-list-item>
+      <ion-item>
+        <ion-label>
+          <p>クイズタイトル</p>
+          <input [(ngModel)]="quiz.title" type="text" name="quiztitle" size="30" maxlength="25">
+          <p>作成者</p>
+          <input [(ngModel)]="quiz.maker" type="text" name="quizmaker" size="30" maxlength="25">
+        </ion-label>
+      </ion-item>
+      <h3>問題</h3>
+      <div *ngFor="let question of quiz.questions; let i = index">
+        <ion-item button (click)="selectQuestion(i)">
+          <ion-label class="question-text">{{ i + 1 }}. {{ question.text }}</ion-label>
+          <ion-icon slot="end" mode="ios" name="information-circle"></ion-icon>
+        </ion-item>
+        <div *ngIf="selectedQuestionIndex === i" class="question-info">
+          <div class="question-text">{{ question.text }}</div>
+          <div class="question-choices-wrapper">
+            <div class="choice">1.{{ question.choices[0] }}</div>
+            <div class="choice">2.{{ question.choices[1] }}</div>
+            <div class="choice">3.{{ question.choices[2] }}</div>
+          </div>
+          <div class="question-correct">正解: {{ question.choices[question.correct] }}</div>
+        </div>
+      </div>
+      <ion-item lines="full" button (click)="touchQuestion()">
+        <ion-icon slot="start" name="add-circle"></ion-icon>
+        <p>問題を追加</p>
+      </ion-item>
+    </ion-list>
+    <div class="center">
+      <ion-button button [disabled]="!checkQuiz()" (click)="createdQuiz()" fill="outline" mode="ios">公開する</ion-button>
     </div>
-  </div>
-  <ion-button button (click)="addedQuestion()" class="bottom-right" fill="clear">保存する</ion-button>
-</ion-content>
+  </ion-content>
+</ng-container>
+
+<ng-template #CreateQuestion>
+  <ion-content padding>
+    <div class="box">
+      <p>問題分</p>
+      <textarea [(ngModel)]="newQuestion.text" rows="10" cols="50"></textarea>
+      <br>
+      <p>選択肢</p>
+      <div padding>
+        1.<input [(ngModel)]="newQuestion.choices[0]" type="text" name="quiztitle" size="50" maxlength="45">
+        <br>
+        2.<input [(ngModel)]="newQuestion.choices[1]" class="margin-top" type="text" name="quiztitle" size="50" maxlength="45">
+        <br>
+        3.<input [(ngModel)]="newQuestion.choices[2]" class="margin-top" type="text" name="quiztitle" size="50" maxlength="45">
+        <br>
+        <p class="margin-top">正解の問題番号を選んでください</p>
+        <input [(ngModel)]="newQuestion.correct" type="number" name="quiztitle" min=1 max=3>
+      </div>
+    </div>
+    <div class="bottom-right">
+      <ion-button button [disabled]="!checkQuestion()" (click)="addedQuestion()" fill="outline">保存する</ion-button>
+    </div>
+  </ion-content>
+</ng-template>

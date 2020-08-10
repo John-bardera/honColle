@@ -23,6 +23,9 @@
       <div class="author">
         {{ quiz.maker }}
       </div>
+      <div class="author">
+        全{{ quiz.questions.length }}問
+      </div>
       <ion-icon *ngFor="let i of convert2ArrayFromNumber(getQuizStar())" name="star"></ion-icon>
       <ion-icon *ngFor="let i of convert2ArrayFromNumber(5 - getQuizStar())" name="star-outline"></ion-icon>
     </div>

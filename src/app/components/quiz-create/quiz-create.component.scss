@@ -23,8 +23,9 @@ ion-title{
 
 .bottom-right{
   position: absolute;
-  bottom : 0;
-  right : 0;
+  bottom : 24px;
+  right : 24px;
+  font-size: 2.4rem;
 }
 
 .box{
@@ -41,4 +42,24 @@ ion-title{
 
 .center{
   text-align: center;
+}
+.question-text {
+  font-size: 1.8rem;
+}
+.question-info {
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  .question-choices-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 8px;
+    .choice {
+      margin: 2px 0;
+    }
+  }
+  .question-correct {
+    padding: 8px 8px;
+  }
 }
