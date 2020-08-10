@@ -38,4 +38,7 @@ export class QuizChallengeComponent implements OnInit {
   selectedAnswer(index: 0 | 1 | 2) {
     this.answers[this.displayedQuestionIndex] = index;
   }
+  finishedReview() {
+    this.displayedQuestionIndex = -2;
+  }
 }

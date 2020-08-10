@@ -35,28 +35,23 @@
     {{ (displayedQuestionIndex + 1) === quiz.questions.length ? '結果を見る' : '次の問題へ' }}
   </ion-button>
 </ion-content>
-<!--
+
 <ion-content padding *ngIf="displayedQuestionIndex === -1">
   <h3>{{ quiz.title }}</h3>
   <p>本: {{ quiz.book.author }}著</p>
   <p>作成者: {{ quiz.maker }}</p>
   <h4>全{{ quiz.questions.length }}問</h4>
-
   <h2 id = "anser">正答</h2>
-  <div class = "anser">
-    <h3>1.本作の主人公である夜凪景が身に着けていた演技法は？</h3>
-    <p>あなたの答え: {{quiz.choices[selectednum-1]}}</p>
-    <p class="correct">正解：{{quiz.choices[quiz.correct-1]}}</p>
-
-    <h3>2.〇△□×？</h3>
-    <p>あなたの答え：〇</p>
-    <p class="wrong">正解：△</p>
+  <div class = "anser" *ngFor="let question of quiz.questions; let i = index">
+    <h3>{{ i + 1 }}. {{ question.text }}</h3>
+    <p>あなたの答え: {{ question.choices[answers[i]] }}</p>
+    <p class="correct">正解: {{ question.choices[question.correct] }}</p>
   </div>
-
-  <ion-button class="bottom-right" fill="clear" button (click)="onNext('review')">レビュー→</ion-button>
+  <ion-button class="bottom-right" fill="clear" button (click)="finishedReview()">レビュー</ion-button>
 </ion-content>
 
-<ion-content *ngIf="selectedtab === 'challenge' && selectedQ === 'review'">
+<!--
+<ion-content *ngIf="displayedQuestionIndex === -2">
   <ion-item>
     <ion-label>
       <h3>{{quiz.title}}</h3>

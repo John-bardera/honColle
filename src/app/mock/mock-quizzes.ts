@@ -13,7 +13,7 @@ export const QUIZZES: Array<Quiz> = [
         choices: ['M24 SWS',
           'バレットM82',
           '豆鉄砲Mk-Ⅱ'],
-        correct: 2,
+        correct: 1,
       }
     ],
     comments: [],
