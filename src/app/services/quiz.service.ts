@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { QUIZZES } from '@/mock/mock-quizzes';
@@ -14,6 +14,8 @@ import { selectQuizzes, setQuiz } from '@/store/quiz.store';
   providedIn: 'root'
 })
 export class QuizService {
+  selectedBooksIsbn$ = new BehaviorSubject<string>('');
+  hasInitSegment$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private store: Store<AppState>,
@@ -47,8 +49,16 @@ export class QuizService {
           quiz.title.includes(q) ||
           quiz.maker.includes(q) ||
           quiz.book.title.includes(q) ||
-          quiz.book.author.includes(q)
+          quiz.book.author.includes(q) ||
+          quiz.book.isbn === q
       ))
+    );
+  }
+  searchQuizzesByIsbn(q: string): Observable<Array<Quiz>> {
+    return this.store.pipe(
+      select(selectQuizzes),
+      map((quizzes: Array<Quiz>) => quizzes.filter(
+        quiz => quiz.book.isbn === q))
     );
   }
 }

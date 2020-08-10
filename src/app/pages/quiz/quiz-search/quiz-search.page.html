@@ -10,6 +10,7 @@
         showCancelButton="never"
         placeholder="入力してください"
         inputmode="search"
+        [(ngModel)]="value"
         (ionChange)="searchQuizzes($event)">
       </ion-searchbar>
       <p>検索結果</p>

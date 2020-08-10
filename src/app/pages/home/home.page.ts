@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -6,7 +7,7 @@ import { Observable } from 'rxjs';
 import { ClickedButtonParams } from '@/components/list-item/list-item.component';
 import { QuizCreateComponent } from '@/components/quiz-create/quiz-create.component';
 import { Book } from '@/models';
-import { BookService, InitService } from '@/services';
+import { BookService, InitService, QuizService } from '@/services';
 import { AppState } from '@/store';
 import { selectBooks, setBook } from '@/store/book.store';
 
@@ -22,9 +23,11 @@ export class HomePage {
   enableRecommendBooks$: Observable<boolean>;
   constructor(
     private modalCtrl: ModalController,
+    private router: Router,
     private store: Store<AppState>,
     private bookService: BookService,
     private initService: InitService,
+    private quizService: QuizService,
   ) {
     this.books$ = this.store.pipe(select(selectBooks));
     this.enableRecommendBooks$ = this.bookService.enableRecommendBooks$;
@@ -38,7 +41,9 @@ export class HomePage {
     if (ev.message === 'setRead') {
       this.store.dispatch(setBook({ book: {...(ev.content as Book), isRead: true} }));
     } else if (ev.message === 'searchQuiz') {
-      console.log('');
+      this.quizService.selectedBooksIsbn$.next((ev.content as Book).isbn);
+      this.quizService.hasInitSegment$.next(true);
+      await this.router.navigateByUrl('tabs/quiz');
     } else if (ev.message === 'createQuiz') {
       const modal = await this.modalCtrl.create({
         component: QuizCreateComponent,

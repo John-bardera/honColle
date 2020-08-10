@@ -17,6 +17,7 @@ import { selectQuizzes } from '@/store/quiz.store';
 })
 export class QuizSearchPage implements OnInit {
   searchedQuizzes$: Observable<Array<Quiz>>;
+  value: string;
 
   constructor(
     private modalCtrl: ModalController,
@@ -24,14 +25,24 @@ export class QuizSearchPage implements OnInit {
     private quizService: QuizService,
   ) {
     this.searchedQuizzes$ = this.store.pipe(select(selectQuizzes));
+    this.quizService.selectedBooksIsbn$.subscribe(value => {
+      if (value) {
+        this.value = value;
+        this.searchedQuizzes$ = this.quizService.searchQuizzesByIsbn(value);
+      }
+    });
   }
 
   ngOnInit() {
   }
 
   async searchQuizzes(ev: any) {
-    const value = ev.target.value; // イベントを発生させたオブジェクトのvalueつまり入力した文字
-    this.searchedQuizzes$ = value ? this.quizService.searchQuizzes(value) : this.store.pipe(select(selectQuizzes));
+    this.value = ev.target.value; // イベントを発生させたオブジェクトのvalueつまり入力した文字
+    if (this.quizService.hasInitSegment$.value) {
+      this.quizService.hasInitSegment$.next(false);
+      this.quizService.selectedBooksIsbn$.next('');
+    }
+    this.searchedQuizzes$ = this.value ? this.quizService.searchQuizzes(this.value) : this.store.pipe(select(selectQuizzes));
   }
   async clickedButtons(ev: ClickedButtonParams) {
     const modal = await this.modalCtrl.create({

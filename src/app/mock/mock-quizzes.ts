@@ -31,8 +31,8 @@ export const QUIZZES: Array<Quiz> = [
       }
     ],
     book: {
-      id: '4054064019',
-      isbn: '4054064019',
+      id: '9784054064010',
+      isbn: '9784054064010',
       affiliateUrl: '',
       author: '',
       authorKana: '',
