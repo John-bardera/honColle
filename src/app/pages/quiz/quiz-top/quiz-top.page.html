@@ -8,6 +8,7 @@
     <app-list-item
       *ngFor="let quiz of quizzes"
       [quiz]="quiz"
+      (clickedButton)="clickedButtons($event)"
     ></app-list-item>
   </ng-container>
   <!--

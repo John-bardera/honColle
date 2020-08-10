@@ -49,8 +49,8 @@
       </ng-container>
     </ng-container>
     <ng-template #IsQuizAtButtons>
-      <ion-buttons class="buttons">
-        <ion-button *ngIf="quiz.comments.length" size="small" fill="solid" shape="round" (click)="sendClicked('readComments')"><ion-icon name="chatbubble-ellipses"></ion-icon></ion-button>
+      <ion-buttons slot="end" class="buttons">
+        <ion-icon class="comment-icon" *ngIf="quiz.comments.length" name="chatbubbles" mode="ios" (click)="sendClicked('readComments')"></ion-icon>
         <ion-button size="small" fill="solid" shape="round" color="warning" (click)="sendClicked('challengeQuiz')">挑戦する</ion-button>
       </ion-buttons>
     </ng-template>

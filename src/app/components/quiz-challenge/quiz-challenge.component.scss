@@ -30,7 +30,10 @@ p {
 }
 .block{
   display:block;
-  margin: 50px;
+  margin: 4rem;
+}
+.choice {
+  font-size: 1.8rem;
 }
 .bottom-right{
   position: absolute;
@@ -39,22 +42,27 @@ p {
 }
 .bottom-right{
   position: absolute;
-  bottom : 0;
-  right : 0;
+  bottom : 24px;
+  right : 24px;
+  font-size: 2.2rem;
 }
-.correct{
-  color: #00D382;
-  margin-bottom: 40px;
-}
-
-.wrong{
+.answer-text {
+  font-size: 1.8rem;
   color: #A260BF;
   margin-bottom: 40px;
+  &.correct{
+    color: #00D382;
+  }
+}
+.your-choice {
+  margin-top: 16px;
+  font-size: 1.8rem;
 }
 
 #seitousu{
   text-align: center;
   color: #A260BF;
+  font-size: 3.2rem;
 }
 
 .box{
@@ -77,7 +85,6 @@ p {
   }
 }
 
-
 .right{
   float: right;
   margin-left: 10px;
@@ -89,4 +96,38 @@ p {
 
 .center{
   text-align: center;
+}
+
+.evaluation{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.evaluation label{
+  position: relative;
+  padding: 10px 10px 0;
+  color: gray;
+  cursor: pointer;
+  font-size: 50px;
+}
+
+.evaluation label:hover,
+label:hover ~ label,
+.evaluation label.checked,
+ion-icon.comment-icon[name="star"],
+ion-icon.comment-icon[name="star-outline"] {
+  color: #ffcc00;
+}
+.comment {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  border-bottom: 1px solid #dddad1;
+}
+.comments-wrapper-header {
+  text-align: center;
+  width: 100%;
+  font-size: 2rem;
+  border-bottom: 1px solid #dddad1;
+  padding: 8px 0;
 }

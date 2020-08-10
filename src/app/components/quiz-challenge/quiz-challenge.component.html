@@ -1,122 +1,116 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button name="close" (click)="dismiss()"></ion-button>
+      <ion-button (click)="irregularDismiss()"><ion-icon name="close"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content padding *ngIf="displayedQuestionIndex >= 0">
-  <h3>{{ quiz.title }}</h3>
-  <p>本: {{ quiz.book.author }}著</p>
-  <p>作成者: {{ quiz.maker }}</p>
-  <h4 class="question-info">{{ displayedQuestionIndex + 1 }}問目 / 全{{ quiz.questions.length }}問</h4>
 
-  <h2 class="text">{{ quiz.questions[displayedQuestionIndex].text }}</h2>
-  <ion-button
-    button
-    (click)="selectedAnswer(0)"
-    [fill]="answers[displayedQuestionIndex] === 0 ? 'solid' : 'outline'"
-    class="block"
-  >{{ quiz.questions[displayedQuestionIndex].choices[0] }}</ion-button>
-  <ion-button
-    button
-    (click)="selectedAnswer(1)"
-    [fill]="answers[displayedQuestionIndex] === 1 ? 'solid' : 'outline'"
-    class="block"
-  >{{ quiz.questions[displayedQuestionIndex].choices[1] }}</ion-button>
-  <ion-button
-    button
-    (click)="selectedAnswer(2)"
-    [fill]="answers[displayedQuestionIndex] === 2 ? 'solid' : 'outline'"
-    class="block"
-  >{{ quiz.questions[displayedQuestionIndex].choices[2] }}</ion-button>
+<ng-container *ngIf="!isOnlyComments; else OnlyComments">
+  <ion-content padding *ngIf="displayedQuestionIndex >= 0">
+    <h3>{{ quiz.title }}</h3>
+    <p>本: {{ quiz.book.author }}著</p>
+    <p>作成者: {{ quiz.maker }}</p>
+    <h4 class="question-info">{{ displayedQuestionIndex + 1 }}問目 / 全{{ quiz.questions.length }}問</h4>
 
-  <ion-button class="bottom-right" fill="clear" button (click)="nextQuestionOrFinish()">
-    {{ (displayedQuestionIndex + 1) === quiz.questions.length ? '結果を見る' : '次の問題へ' }}
-  </ion-button>
-</ion-content>
+    <h2 class="text">{{ quiz.questions[displayedQuestionIndex].text }}</h2>
+    <ion-button
+      button
+      (click)="selectedAnswer(0)"
+      [fill]="answers[displayedQuestionIndex] === 0 ? 'solid' : 'outline'"
+      class="block choice"
+    >{{ quiz.questions[displayedQuestionIndex].choices[0] }}</ion-button>
+    <ion-button
+      button
+      (click)="selectedAnswer(1)"
+      [fill]="answers[displayedQuestionIndex] === 1 ? 'solid' : 'outline'"
+      class="block choice"
+    >{{ quiz.questions[displayedQuestionIndex].choices[1] }}</ion-button>
+    <ion-button
+      button
+      (click)="selectedAnswer(2)"
+      [fill]="answers[displayedQuestionIndex] === 2 ? 'solid' : 'outline'"
+      class="block choice"
+    >{{ quiz.questions[displayedQuestionIndex].choices[2] }}</ion-button>
 
-<ion-content padding *ngIf="displayedQuestionIndex === -1">
-  <h3>{{ quiz.title }}</h3>
-  <p>本: {{ quiz.book.author }}著</p>
-  <p>作成者: {{ quiz.maker }}</p>
-  <h4>全{{ quiz.questions.length }}問</h4>
-  <h2 id = "anser">正答</h2>
-  <div class = "anser" *ngFor="let question of quiz.questions; let i = index">
-    <h3>{{ i + 1 }}. {{ question.text }}</h3>
-    <p>あなたの答え: {{ question.choices[answers[i]] }}</p>
-    <p class="correct">正解: {{ question.choices[question.correct] }}</p>
-  </div>
-  <ion-button class="bottom-right" fill="clear" button (click)="finishedReview()">レビュー</ion-button>
-</ion-content>
+    <ion-button class="bottom-right" fill="clear" button (click)="nextQuestionOrFinish()">
+      {{ (displayedQuestionIndex + 1) === quiz.questions.length ? '結果を見る' : '次の問題へ' }}
+    </ion-button>
+  </ion-content>
 
-<!--
-<ion-content *ngIf="displayedQuestionIndex === -2">
-  <ion-item>
-    <ion-label>
-      <h3>{{quiz.title}}</h3>
-    </ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="../../../../resources/act.jpg">
-    </ion-thumbnail>
-    <ion-label>
-      <h2>???1巻</h2>
-      <div class="quizmaker">
-        <p>著　</p>
-        <p class="ion-text-lowercase">クイズ作成者　{{quiz.maker}}　さん</p>
-      </div>
-    </ion-label>
-  </ion-item>
-
-  <h1 class="ion-text-uppercase" id="seitousu"><b>{{matchChoices()}}問正解！</b></h1>
-  <div class="box">
-    <p class="box-item">このクイズの評価をお願いします</p>
-    <div class="box-item">
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-      <ion-button  fill="clear"><ion-icon slot="icon-only" name="star-outline"></ion-icon></ion-button>
-
-      <p>コメント</p>
-      <input [(ngModel)]="comment.maker" type="text" placeholder="名前" size="20" maxlength="15">
-      <br>
-      <textarea [(ngModel)]="comment.content" placeholder="コメント" rows="10" cols="50"></textarea>
-      <br>
-      <ion-button button (click)="addComment(comment)" fill="outline" size="default" mode="ios">レビューする</ion-button>
-      <br>
-      <ion-button button (click)="onNext('list')" color="medium" fill="outline" size="small" mode="ios">レビューせずに閉じる</ion-button>
+  <ion-content padding *ngIf="displayedQuestionIndex === -1">
+    <h3>{{ quiz.title }}</h3>
+    <p>本: {{ quiz.book.author }}著</p>
+    <p>作成者: {{ quiz.maker }}</p>
+    <h4>全{{ quiz.questions.length }}問</h4>
+    <div class="answer" *ngFor="let question of quiz.questions; let i = index">
+      <h3>{{ i + 1 }}. {{ question.text }}</h3>
+      <p class="your-choice">あなたの答え: {{ question.choices[answers[i]] }}</p>
+      <p
+        class="answer-text"
+        [class.correct]="question.correct === answers[i]"
+      >正解: {{ question.choices[question.correct] }}</p>
     </div>
-  </div>
-</ion-content>
+    <ion-button class="bottom-right" fill="clear" button (click)="finishedReview()">レビュー</ion-button>
+  </ion-content>
 
-<ion-content *ngIf="selectedtab == 'challenge' && selectedQ == 'list'">
-  <ion-item>
-    <ion-label>
-      <div id="quizdetail">
-        <p class="ion-text-uppercase" id="title">アクタージュクイズ</p>
-        <p>本：アクタージュ　著：マツキタクヤ</p>
-        <p>作成者：apple</p>
-        <p>全３問</p>
+  <ion-content padding *ngIf="displayedQuestionIndex === -2">
+    <h3>{{ quiz.title }}</h3>
+    <app-list-item
+      [book]="quiz.book"
+      [hasNotButtons]="true"
+    ></app-list-item>
+
+    <h1 class="ion-text-uppercase" id="seitousu"><b>{{ matchedChoices() }}問正解！</b></h1>
+    <div class="box">
+      <p class="box-item">このクイズの評価をお願いします</p>
+      <div class="box-item">
+        <div class="evaluation">
+          <label
+            *ngFor="let star of [5, 4, 3, 2, 1]"
+            [class.first-star]="star === 1"
+            [class.checked]="newComment.star >= star"
+          >
+            <ion-icon
+              name="star"
+              (click)="changedStar(star)"
+            ></ion-icon>
+          </label>
+        </div>
+        <p>コメント</p>
+        <input [(ngModel)]="newComment.maker" type="text" placeholder="名前" size="20" maxlength="15">
+        <br>
+        <textarea [(ngModel)]="newComment.content" placeholder="コメント" rows="10" cols="50"></textarea>
+        <br>
+        <ion-button button [disabled]="newComment.star === 0" (click)="addComment()" fill="outline" size="default" mode="ios">レビューする</ion-button>
+        <br>
+        <ion-button button (click)="dismiss()" color="medium" fill="outline" size="small" mode="ios">レビューせずに閉じる</ion-button>
       </div>
-      <ion-icon name="chatbox"></ion-icon>
-      <p style="text-align: center;">このクイズのコメント</p>
-    </ion-label>
-  </ion-item>
-  <ion-item *ngFor="let comment of comments">
-    <ion-list>
-      {{comment.maker}}
-      <div class="right">
-        <ion-icon name="star"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
+    </div>
+  </ion-content>
+</ng-container>
+
+<ng-template #OnlyComments>
+  <ion-content padding>
+    <div id="quizdetail">
+      <h3 class="ion-text-uppercase" id="title">{{ quiz.title }}</h3>
+      <div>本: {{ quiz.book.title }} 著: {{ quiz.book.author }}</div>
+      <div>作成者: {{ quiz.maker }}</div>
+      <div>全{{ quiz.questions.length }}問</div>
+    </div>
+    <div class="comments-wrapper-header">
+      <div>
+        <ion-icon name="chatbubbles" mode="ios"></ion-icon>
+        このクイズのコメント
       </div>
-      <p>{{comment.content}}</p>
-    </ion-list>
-  </ion-item>
-</ion-content>
--->
+    </div>
+    <div class="comment" *ngFor="let comment of quiz.comments">
+      <div>{{comment.maker}}</div>
+      <div>
+        <ion-icon *ngFor="let i of convert2ArrayFromNumber(comment.star)" class="comment-icon" name="star"></ion-icon>
+        <ion-icon *ngFor="let i of convert2ArrayFromNumber(5 - comment.star)" class="comment-icon" name="star-outline"></ion-icon>
+      </div>
+      <div>{{ comment.content }}</div>
+    </div>
+  </ion-content>
+</ng-template>

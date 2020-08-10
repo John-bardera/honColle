@@ -14,9 +14,22 @@ export const QUIZZES: Array<Quiz> = [
           'バレットM82',
           '豆鉄砲Mk-Ⅱ'],
         correct: 1,
+      },
+      {
+        text: '風見雄二が昔飼っていた犬の名前は？',
+        choices: ['ジョン',
+          'ジョニー',
+          'ジャック'],
+        correct: 0,
       }
     ],
-    comments: [],
+    comments: [
+      {
+        maker: 'John',
+        star: 4,
+        content: 'さすが名作'
+      }
+    ],
     book: {
       id: '4054064019',
       isbn: '4054064019',
