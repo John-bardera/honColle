@@ -1,9 +1,8 @@
 import { Component, } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { Router } from '@angular/router';
 
 import { Book } from '@/models';
 import { AppState } from '@/store';
@@ -15,7 +14,7 @@ import { selectBooks } from '@/store/book.store';
   styleUrls: ['analytics.page.scss'],
 })
 export class AnalyticsPage {
-  author$: Observable<Array<String>>;
+  author$: Observable<Array<string>>;
   constructor(
     private router: Router,
     private store: Store<AppState>,
@@ -25,16 +24,16 @@ export class AnalyticsPage {
       map(books => {
         const author = [];
         books.map(book => {
-          if(!author.includes(book.author)){
+          if (!author.includes(book.author)) {
             author.push(book.author);
           }
-        })
+        });
         return author;
       })
-    )
+    );
   }
 
-  onChangePage(){
+  onChangePage() {
     this.router.navigateByUrl('tabs/analytics/graph');
   }
 }

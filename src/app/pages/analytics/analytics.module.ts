@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
+import { ComponentsModule } from '@/components/components.module';
 
 import { AnalyticsPage } from './analytics.page';
 
@@ -26,7 +27,8 @@ import { AnalyticsPage } from './analytics.page';
           }
         ]
       }
-    ])
+    ]),
+    ComponentsModule
   ],
   declarations: [AnalyticsPage]
 })

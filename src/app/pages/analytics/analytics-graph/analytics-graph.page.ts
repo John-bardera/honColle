@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 import Chart from 'chart.js';
 
@@ -7,7 +7,7 @@ import Chart from 'chart.js';
   templateUrl: './analytics-graph.page.html',
   styleUrls: ['./analytics-graph.page.scss'],
 })
-export class AnalyticsGraphPage{
+export class AnalyticsGraphPage {
   @ViewChild('MyChart', { static: true }) myChart;
     // グラフの表示サイズ
     view: any[] = [700, 400];
@@ -17,7 +17,7 @@ export class AnalyticsGraphPage{
     showLabels = true;
     explodeSlices = false;
     doughnut = false;
-    
+
   　// カラーテーマ
     colorScheme = {
       domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
